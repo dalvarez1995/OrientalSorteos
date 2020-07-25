@@ -1,0 +1,236 @@
+﻿
+html,body,.container {
+    height: 100% !important;
+}
+body {
+    font-family: 'Nunito', sans-serif;
+    
+}
+.contenedor {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 7rem;
+    background-image: url(/Content/images/background-pattern.svg);
+    background-repeat: repeat;
+}
+
+.login-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /*background-image: url(/Content/images/paint-splash.svg);
+    background-repeat: no-repeat;
+    background-color: #fff;*/
+    margin: 10px 0;
+    transition: .3s ease;
+}
+
+@media only screen and (min-width: 768px) {
+    .login-div {
+        width: 475px;
+    }
+}
+
+
+/*.container {
+    width: 100vw;
+    height: 100%;
+}*/
+
+.login-div {
+    z-index: 1;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.logo {
+    width: 75%;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    /*border: 1px solid #ddd;*/
+    border-radius: 8px;
+    /*padding: 5px;*/
+}
+
+.error-message {
+    font-size: smaller;
+    color: #EA252A;
+}
+
+ .form-row {
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+    max-height: 100px;
+}
+
+.input-field {
+    padding-left:0 !important;
+    margin-bottom:0 !important;
+}
+
+    .input-field label {
+        pointer-events: none;
+    }
+
+
+input:not([type]):focus:not([readonly]) + label, .form-wrap input[type=text]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=password]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=email]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=url]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=time]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=date]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=datetime]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=datetime-local]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=tel]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=number]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=search]:not(.browser-default):focus:not([readonly]) + label, .form-wrap textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #EA252A; /* after animation color change css */
+}
+
+.form-wrap input:focus:not([type]):not([readonly]), .form-wrap input[type="text"]:focus:not(.browser-default):not([readonly]), .form-wrap input[type="password"]:focus:not(.browser-default):not([readonly]), input[type="email"]:focus:not(.browser-default):not([readonly]), .form-wrap input[type="url"]:focus:not(.browser-default):not([readonly]), input[type="time"]:focus:not(.browser-default):not([readonly]), .form-wrap input[type="date"]:focus:not(.browser-default):not([readonly]), input[type="datetime"]:focus:not(.browser-default):not([readonly]), .form-wrap input[type="datetime-local"]:focus:not(.browser-default):not([readonly]), input[type="tel"]:focus:not(.browser-default):not([readonly]), .form-wrap input[type="number"]:focus:not(.browser-default):not([readonly]), input[type="search"]:focus:not(.browser-default):not([readonly]), .form-wrap textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #EA252A;
+    box-shadow: 0 1px 0 0 #EA252A; /* after animation color change css */
+}
+
+
+@media screen and (max-width:414px) {
+    .login-div {
+        border: none;
+        box-shadow: none;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .login-content {
+        background-image: none;
+        background-color: #fff;
+    }
+    body {
+        background:none;
+    }
+    .contenedor {
+        background: none;
+    }
+}
+
+.change-password-link {
+    margin-top:1rem;
+}
+
+.o-label > span::before {
+    content: "";
+    border-top: 1px solid #e5e8ed;
+}
+.o-label > span::after {
+    content: "";
+    border-top: 1px solid #e5e8ed;
+}
+
+.o-label > span {
+    color: #5b6987;
+    display: -ms-grid;
+    display: grid;
+    font-size: 16px;
+    width: 100%;
+    line-height: 26px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    -ms-grid-columns: minmax(20px,1fr) auto minmax(20px,1fr);
+    grid-template-columns: minmax(20px,1fr) auto minmax(20px,1fr);
+    grid-gap: 19px;
+}
+
+
+.btn {
+    background-color: #EA252A;
+
+}
+    .btn:hover {
+        background-color: #d9c101;
+    }
+
+    .btn:focus {
+        background-color: #f7e136;
+    }
+
+.facebook-button {
+    background-color: #0D8AF0;
+}
+
+.whatsapp-button {
+    background-color: #0DC342;
+}
+
+.social-buttons a {
+    width: 270px;
+}
+
+
+#registrar-compra .col.s12 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    #registrar-compra .col.s12 .row {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    #registrar-compra .col.s12 .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+        #registrar-compra .col.s12 .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+    #registrar-compra .col.s12 .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+    }
+
+    #registrar-compra .col.s12 .container:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    #registrar-compra .col.s12 .container input:checked ~ .checkmark {
+        background-color: #2196F3;
+    }
+
+    #registrar-compra .col.s12 .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    #registrar-compra .col.s12 .container input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    #registrar-compra .col.s12 .container .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }

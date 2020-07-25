@@ -1,0 +1,137 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Sorteos.Web.SiteMaster" %>
+
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head runat="server">
+    <title>Regreso a Clases Milky - Area de administración</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico"/>
+    <webopt:BundleReference runat="server" Path="~/Content/css/main" />
+    <meta name="google-site-verification" content="H-isvOrF0ltEyd6Mcn6ZqOraaXGtlPPsFsasqjlJP9s" />
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <asp:ContentPlaceHolder ID="header" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="md-skin fixed-sidebar pace-done">
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <%--<asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />--%>
+                <%--<asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />--%>
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+            </Scripts>
+        </asp:ScriptManager>
+
+
+        <%--Wrapper--%>
+        <div id="wrapper" class="Dashboard_1">
+            <!-- Navigation -->
+            <nav class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav metismenu" id="side-menu">
+                        <li class="nav-header">
+                            <div class="dropdown profile-element">
+                                <img id="imgUsuario" runat="server" alt="image" style="max-height: 75px; background-color: #f9c528ab;" class="img-rounded img-fluid elevation-4" src="/Content/images/default-user.png">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <span id="lblNombreCompleto" runat="server" class="block m-t-xs font-bold"></span>
+                                    <span id="lblPerfil" runat="server" class="text-muted text-xs block">Customer</span>
+                                </a>
+                            </div>
+                            <div id="lblIniciales" runat="server" class="logo-element">
+                                DA
+                            </div>
+                        </li>
+
+                        <% if (Sorteos.Web.WebContext.IsAdmin())
+                            { %>
+                        <li>
+                            <a href="/Administracion/Sorteos"><i class="fas fa-info-circle "></i><span class="nav-label" style="font-size: medium;">Administrar Sorteos</span></a>
+                        </li>
+                         <li>
+                            <a href="/Administracion/Compras"><i class="fas fa-money-check-alt "></i><span class="nav-label" style="font-size: medium;">Compras Registradas</span></a>
+                        </li>
+                        <li>
+                            <a href="/Administracion/Estadisticas"><i class="fas fa-file-invoice-dollar "></i><span class="nav-label" style="font-size: medium;">Estadisticas</span></a>
+                        </li>
+                        <li>
+                            <a href="/Administracion/Sitio"><i class="fas fa-globe-americas "></i><span class="nav-label" style="font-size: medium;">Sitio</span></a>
+                        </li>
+                        <%} %>
+                        <%--<li>
+                            <a href="/Main"><i class="fas fa-info-circle "></i><span class="nav-label" style="font-size: medium;">Detalles Sorteo</span></a>
+                        </li>
+                        <li>
+                            <a href="/Participar"><i class="fas fa-file-invoice-dollar "></i><span class="nav-label" style="font-size: medium;">Ingresar Compras</span></a>
+                        </li>--%>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Page wraper -->
+            <div id="page-wrapper" class="gray-bg">
+                <!-- Top Navbar -->
+                <div class="row border-bottom">
+                    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                        <div class="navbar-header">
+                            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-top-links navbar-right">
+                            <li>
+                                <a runat="server" class="m-r-lg"  CausesValidation="false" onserverclick="Logout">
+                                    <i class="fas fa-sign-out-alt"></i>Salir
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <%--Content--%>
+                <asp:ContentPlaceHolder ID="content" runat="server">
+                </asp:ContentPlaceHolder>
+
+
+
+                <div class="footer">
+                    <%--<div class="float-right">
+                        <a href="#" target="_blank">Powered by Dominic Alvarez</a>
+                    </div>--%>
+                    <div>
+                        <strong>Copyright</strong>&copy; 
+                        <asp:Label ID="lblAnioActual" runat="server"></asp:Label>
+                        Grupo Oriental 
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- End wrapper-->
+
+        <%--Body Scripts--%>
+        <%: Scripts.Render("~/bundles/main-body") %>
+        <asp:ContentPlaceHolder ID="body" runat="server">
+        </asp:ContentPlaceHolder>
+
+    </form>
+
+
+</body>
+</html>

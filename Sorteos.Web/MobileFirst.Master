@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MobileFirst.master.cs" Inherits="Sorteos.Web.MobileFirst" %>
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1" />
+    <webopt:BundleReference runat="server" Path="~/Content/css/login" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="contenedor">
+        <div class="login-content">
+            <form runat="server">
+                <div class="login-div z-depth-5">
+                    <div class="row">
+                        <asp:ContentPlaceHolder ID="logo" runat="server">
+                        </asp:ContentPlaceHolder>
+                        <div class="logo">
+                            <img id="userImage" runat="server" src="/Content/images/regreso-clases.jpeg" class="z-depth-2" style="object-fit: contain; height: 75px; width: 75px; border-radius: 15px" />
+                        </div>
+                        <h6 id="fullName" runat="server"></h6>
+                    </div>
+                    <div class="row">
+                        <asp:ContentPlaceHolder ID="main" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <div class="row">
+                        <h6 class="o-label"><span>MÁS</span></h6>
+                    </div>
+                    <div class="col s12">
+                        <asp:ContentPlaceHolder ID="footer" runat="server">
+                        </asp:ContentPlaceHolder>
+                        <div class="row">
+                            <div class="col s12">
+                                <a class="btn waves-effect waves-light" runat="server" causesvalidation="false" onserverclick="Logout">
+                                    <i class=" fas fa-sign-out-alt left"></i>
+                                    SALIR
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h6 class="o-label"><span>Sitio</span></h6>
+                            <a href="/Login">Inicio</a>
+                            <br />
+                            <a href="/Condiciones-Uso">Condiciones de Uso</a>
+                            <br />
+                            <a href="/Politica-Privacidad">Políticas de privacidad</a>
+                        </div>
+                        <div class="row">
+                            <b>Copyright &copy; 
+                            </b>
+                            <span id="currentYear"></span>
+                            Grupo Oriental 
+                            
+                            <script>
+                                (function () {
+                                    const yearLabel = document.getElementById('currentYear');
+                                    yearLabel.innerText = new Date().getUTCFullYear();
+                                })();
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <%: Scripts.Render("~/bundles/login") %>
+                <asp:ContentPlaceHolder ID="body" runat="server">
+                </asp:ContentPlaceHolder>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

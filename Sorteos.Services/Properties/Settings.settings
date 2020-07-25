@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Sorteos.Services.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SendGridApiKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">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</Value>
+    </Setting>
+    <Setting Name="TokenSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">a6991463bb48bfbedb3737faa417492d</Value>
+    </Setting>
+    <Setting Name="EmailAccount" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">notificaciones@regresoaclasesmilky.com</Value>
+    </Setting>
+    <Setting Name="Company" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Milky</Value>
+    </Setting>
+    <Setting Name="FacebookLink" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://www.facebook.com/OrientalOFICIAL/</Value>
+    </Setting>
+    <Setting Name="InstagramLink" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://www.instagram.com/orientaloficial/</Value>
+    </Setting>
+    <Setting Name="WhatsappLink" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://api.whatsapp.com/send?phone=593990588888</Value>
+    </Setting>
+    <Setting Name="LogoSrc" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://gruporiental.com/wp-content/uploads/2018/10/logo-web2-oriental-p.fw_.png</Value>
+    </Setting>
+    <Setting Name="BaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://regresoaclasesmilky.com</Value>
+    </Setting>
+    <Setting Name="PageTitle" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Regreso a Clases Milky</Value>
+    </Setting>
+    <Setting Name="FacebookClientId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2733796896839313</Value>
+    </Setting>
+    <Setting Name="FacebookSecretKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">5ab1d5832b51d4cf077821c26b1e8ae8</Value>
+    </Setting>
+    <Setting Name="FacebookRedirectUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://regresoaclasesmilky.com/Login</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
