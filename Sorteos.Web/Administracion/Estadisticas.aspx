@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Estadisticas.aspx.cs" Inherits="Sorteos.Web.Administracion.Estadisticas" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Estadisticas.aspx.cs" Inherits="Sorteos.Web.Administracion.Estadisticas" %>
 <asp:Content ID="estadisticasHeader" ContentPlaceHolderID="header" runat="server">
 </asp:Content>
 <asp:Content ID="estadisticasContent" ContentPlaceHolderID="content" runat="server">

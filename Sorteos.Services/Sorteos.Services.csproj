@@ -100,6 +100,7 @@
     <Compile Include="Models\FacebookUser.cs" />
     <Compile Include="Models\PermissionModel.cs" />
     <Compile Include="Models\PurchaseModel.cs" />
+    <Compile Include="Models\PurchaseStatus.cs" />
     <Compile Include="Models\RaffleModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\SiteModel.cs" />

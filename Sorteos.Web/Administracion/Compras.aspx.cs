@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ClosedXML.Excel;
@@ -9,6 +10,7 @@ using Newtonsoft.Json;
 using Sorteos.Services;
 using Sorteos.Services.Datatables;
 using Sorteos.Services.Datatables.Core;
+using Sorteos.Services.Models;
 
 namespace Sorteos.Web.Administracion
 {
@@ -45,7 +47,7 @@ namespace Sorteos.Web.Administracion
                     cboSorteos.Items.Add(new ListItem { 
                         Text = raffle.Description,
                         Value = raffle.Id.ToString(),
-                        Selected = currentRaffle.Id == raffle.Id
+                        Selected = currentRaffle != null ? currentRaffle.Id == raffle.Id : false
                     });
                     
                 });
@@ -55,6 +57,12 @@ namespace Sorteos.Web.Administracion
                 cboTipoCompra.Items.Add(new ListItem("Seleccione un tipo", ""));
                 cboTipoCompra.Items.Add(new ListItem("Supermercado", "Supermercado"));
                 cboTipoCompra.Items.Add(new ListItem("Tienda", "Tienda"));
+
+                var purchstatuses = Enum.GetValues(typeof(PurchaseStatus));
+                cboEstados.Items.Add(new ListItem("Seleccione un estado", "0"));
+                foreach (var purchStatus in purchstatuses) {
+                    cboEstados.Items.Add(new ListItem(Enum.GetName(typeof(PurchaseStatus),purchStatus),((int)purchStatus).ToString()));
+                }
             }
         }
 

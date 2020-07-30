@@ -1,9 +1,14 @@
-﻿using System;
+﻿using Sorteos.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Sorteos.Web
 {
-    public partial class MobileFirst : MasterPage
+    public partial class Admin : MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -14,7 +19,7 @@ namespace Sorteos.Web
                 Session["ShowAlert"] = null;
 
             }
-            WebContext.ValidateSession();
+            WebContext.ValidateAdminArea();
 
             var currentUser = WebContext.GetCurrentUser();
             if (currentUser == null)
@@ -23,18 +28,14 @@ namespace Sorteos.Web
                 return;
             }
 
-            fullName.InnerText = currentUser.FullName;
-            if (WebContext.IsFacebookLogged()) {
-                userImage.Src = WebContext.GetFacebookUser().PictureUrl;
-            }
+            lblNombreCompleto.InnerText = currentUser.FullName;
+            lblPerfil.InnerText = currentUser.Role.Description;
         }
 
-        protected void Logout(object sender, EventArgs e)
-        {
+        protected void Logout(object sender, EventArgs e) {
             Session.RemoveAll();
-            Response.Redirect("/Login", false);
+            Response.Redirect("/Login",false);
             return;
         }
-
     }
 }

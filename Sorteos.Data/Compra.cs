@@ -26,6 +26,7 @@ namespace Sorteos.Data
         public System.DateTime FechaCreacion { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public string Tipo { get; set; }
+        public int Estado { get; set; }
     
         public virtual Ciudad Ciudad { get; set; }
         public virtual Marca Marca { get; set; }

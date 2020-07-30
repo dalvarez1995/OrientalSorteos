@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Sorteos.Web.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.Master.cs" Inherits="Sorteos.Web.Admin" %>
 
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
     <webopt:BundleReference runat="server" Path="~/Content/css/main" />
     <meta name="google-site-verification" content="H-isvOrF0ltEyd6Mcn6ZqOraaXGtlPPsFsasqjlJP9s" />
     <asp:PlaceHolder runat="server">
@@ -63,8 +63,11 @@
                         <li>
                             <a href="/Administracion/Sorteos"><i class="fas fa-info-circle "></i><span class="nav-label" style="font-size: medium;">Administrar Sorteos</span></a>
                         </li>
-                         <li>
+                        <li>
                             <a href="/Administracion/Compras"><i class="fas fa-money-check-alt "></i><span class="nav-label" style="font-size: medium;">Compras Registradas</span></a>
+                        </li>
+                        <li>
+                            <a href="/Administracion/Depurar"><i class="fas fa-vote-yea "></i><span class="nav-label" style="font-size: medium;">Depurar</span></a>
                         </li>
                         <li>
                             <a href="/Administracion/Estadisticas"><i class="fas fa-file-invoice-dollar "></i><span class="nav-label" style="font-size: medium;">Estadisticas</span></a>
@@ -94,7 +97,7 @@
 
                         <ul class="nav navbar-top-links navbar-right">
                             <li>
-                                <a runat="server" class="m-r-lg"  CausesValidation="false" onserverclick="Logout">
+                                <a runat="server" class="m-r-lg" causesvalidation="false" onserverclick="Logout">
                                     <i class="fas fa-sign-out-alt"></i>Salir
                                 </a>
                             </li>

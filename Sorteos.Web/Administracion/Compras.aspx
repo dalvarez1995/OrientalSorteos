@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Sorteos - Compras" Language="C#" MasterPageFile="~/Site.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Compras.aspx.cs" Inherits="Sorteos.Web.Administracion.Compras" %>
+﻿<%@ Page Title="Sorteos - Compras" Language="C#" MasterPageFile="~/Admin.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Compras.aspx.cs" Inherits="Sorteos.Web.Administracion.Compras" %>
 
 <asp:Content ID="compraHeader" ContentPlaceHolderID="header" runat="server">
     <webopt:BundleReference runat="server" Path="~/Content/css/datatables" />
@@ -95,6 +95,16 @@
                                 </div>
                             </ContentTemplate>
                         </asp:UpdatePanel>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="font-normal">Estado</label>
+                                <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                    <asp:DropDownList ID="cboEstados" ClientIDMode="Static" runat="server" class="form-control">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row justify-content-center">
                             <button class="btn btn-primary" onclick="dtOrden();return false;"><i class="fa fa-search m-r-sm"></i>Buscar</button>
                         </div>
@@ -118,6 +128,7 @@
                                     <thead>
                                         <tr>
                                             <th></th>
+                                            <th>ESTADO</th>
                                             <th>SORTEO</th>
                                             <th>NOMBRE CLIENTE</th>
                                             <th>TIPO</th>
@@ -156,7 +167,7 @@
         });
 
 
-        function throwImageModal(imgSrc,alt) {
+        function throwImageModal(imgSrc, alt) {
             let modal = document.getElementById("modal-image");
             let modalImg = document.getElementById("img-modal");
             let captionText = document.getElementById("caption");
@@ -176,21 +187,44 @@
                 const dtImplName = 'PurchaseDatatable';
                 const tableOpts = {
                     rowId: "Id",
-                    order: [[9, 'asc']],
+                    order: [[10, 'asc']],
                     columns: [
                         {
                             data: null,
-                            render: function (data, type, row) {
+                            width:'60px',
+                            className:'text-center',
+                            render: function (data) {
                                 const createdAt = new Date(data.FechaCreacion.toString());
                                 const ye = new Intl.DateTimeFormat('es', { year: 'numeric' }).format(createdAt);
                                 const mo = new Intl.DateTimeFormat('es', { month: 'long' }).format(createdAt);
                                 const da = new Intl.DateTimeFormat('es', { day: '2-digit' }).format(createdAt);
+                                let restoreButton = `</br><button title="Restaurar Compra" class="btn btn-primary mt-2" onclick="changePurchaseStatus(${data.Id},10);return false;" ><i class="fa fa-sync"></i></button>`;
                                 return `<button class="btn btn-primary" 
-                                                onclick="throwImageModal('/Content/images/invoices/${data.FacturaPath}','${data.Sorteo} - ${data.NombreCliente}, ${da} de ${mo} del ${ye}');return false;"> <i  class="fa fa-eye"></i></button>`
+                                                title="Ver Imagen"
+                                                onclick="throwImageModal('/Content/images/invoices/${data.FacturaPath}','${data.Sorteo} - ${data.NombreCliente}, ${da} de ${mo} del ${ye}');return false;">
+                                                <i  class="fa fa-eye">
+                                                </i>
+                                        </button>'${ data.Estado == 'Invalido' ? restoreButton : ''}`
                             },
                             searchable: false,
                             orderable: false,
+                        },
+                        {
+                            data: "Estado",
                             className: 'text-center',
+                            render: function (data) {
+                                switch (data) {
+                                    case 'Pendiente':
+                                        return `<i  class="fa fa-2x fa-user-clock" title="Pendiente Depuración"></i>`;
+                                        break;
+                                    case 'Valido':
+                                        return `<i  class="fa fa-2x fa-check-circle" style="color:green;" title="Válido"></i>`;
+                                        break;
+                                    case 'Invalido':
+                                        return `<i  class="fa fa-2x fa-times-circle" style="color:red;" title="Ïnválido"></i>`;
+                                        break;
+                                }
+                            }
                         },
                         { data: "Sorteo", orderable: false, },
                         { data: "NombreCliente", orderable: false, },
@@ -202,7 +236,7 @@
                         { data: "Provincia", orderable: false, },
                         {
                             "data": "FechaCreacion",
-                            render: function (data, type, row) {
+                            render: function (data) {
                                 const date = new Date(data.toString());
                                 return date.format("dd/MM/yyyy HH:mm:ss");
                             }
@@ -219,7 +253,8 @@
                     provinciaId: $('#cboProvincias').val(),
                     ciudadId: $('#cboCiudades').val(),
                     tipo: $('#cboTipoCompra').val(),
-                    cliente: $('#txtCliente').val()
+                    cliente: $('#txtCliente').val(),
+                    estado: $('#cboEstados').val()
 
                 }, '/Service.asmx/GetDT', tableOpts, () => { dtInjectServerButton('content_btnExportar', 'tblCompras'); });
 
@@ -227,5 +262,20 @@
                 notifier.alert(e.message ? e.message : e)
             }
         };
+
+        async function changePurchaseStatus(purchaseId,status) {
+            try {
+                await ajaxPOST('/Service.asmx/ChangePurchaseStatus',
+                    {
+                        purchaseId,
+                        status
+                    })
+                notifier.success('Compra restaurada correctamente');
+                $('#tblCompras').DataTable().ajax.reload();
+
+            } catch (e) {
+                error(e.message);
+            }
+        }
     </script>
 </asp:Content>

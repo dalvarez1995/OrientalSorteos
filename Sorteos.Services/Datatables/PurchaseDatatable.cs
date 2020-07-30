@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using Sorteos.Data;
 using Sorteos.Services.Datatables.Core;
 using Sorteos.Services.Datatables.Util;
+using Sorteos.Services.Models;
 
 namespace Sorteos.Services.Datatables
 {
@@ -34,6 +35,8 @@ namespace Sorteos.Services.Datatables
             Int32.TryParse(request.custom.Where(p => p.key == "provinciaId").Select(p => p.value).FirstOrDefault(), out provinciaId);
             var ciudadId = 0;
             Int32.TryParse(request.custom.Where(p => p.key == "ciudadId").Select(p => p.value).FirstOrDefault(), out ciudadId);
+            var estadoId = 0;
+            Int32.TryParse(request.custom.Where(p => p.key == "estado").Select(p => p.value).FirstOrDefault(), out estadoId);
 
             string tipo = request.custom.Where(p => p.key == "tipo").Select(p => p.value).FirstOrDefault() ?? "";
             string cliente = request.custom.Where(p => p.key == "cliente").Select(p => p.value).FirstOrDefault() ?? "";
@@ -58,6 +61,8 @@ namespace Sorteos.Services.Datatables
                 predicate = predicate.And(tbl => tbl.ProvinciaId == provinciaId);
             if (ciudadId > 0)
                 predicate = predicate.And(tbl => tbl.CiudadId == ciudadId);
+            if (estadoId > 0)
+                predicate = predicate.And(tbl => tbl.Estado == estadoId);
 
             if (!string.IsNullOrEmpty(tipo))
                 predicate = predicate.And(tbl => tbl.Tipo == tipo);
@@ -86,6 +91,7 @@ namespace Sorteos.Services.Datatables
                 compra.Ciudad = item.Ciudad.Nombre;
                 compra.FacturaPath = item.FacturaPath;
                 compra.FechaCreacion = item.FechaCreacion;
+                compra.Estado = Enum.GetName(typeof(PurchaseStatus), Enum.Parse(typeof(PurchaseStatus),item.Estado.ToString(),true));
                 listaCompras.Add(compra);
             }
             return listaCompras;
@@ -178,5 +184,6 @@ namespace Sorteos.Services.Datatables
         public string Ciudad { get; set; }
         public string Provincia { get; set; }
         public DateTime FechaCreacion { get; set; }
+        public string Estado { get; set; }
     }
 }

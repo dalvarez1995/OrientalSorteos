@@ -1,6 +1,7 @@
 ﻿using Sorteos.Data;
 using Sorteos.Services.Models;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -46,6 +47,7 @@ namespace Sorteos.Services
                     SorteoId = currentRaffle.Id,
                     UsuarioId = userId,
                     FacturaPath = invoicePath,
+                    Estado = (int)PurchaseStatus.Pendiente,
                     FechaCreacion = DateTime.UtcNow.AddHours(-5)
                 });
 
@@ -53,7 +55,7 @@ namespace Sorteos.Services
             }
         }
 
-        public int GetCustomerPurchasesCount(string customerId)
+        public int GetCustomerPurchasesCount(string customerId, int raffleId)
         {
             using (var context = new SorteosDbEntities())
             {
@@ -63,11 +65,82 @@ namespace Sorteos.Services
                     on
                         c.UsuarioId equals u.Id
                     where
-                        u.Email == customerId
+                        u.Email == customerId &&
+                        c.SorteoId == raffleId
                     select c
                 ).Count();
             }
-        }   
+        }
+
+        public int GetPendingPurchasesCountByRaffle(int raffleId) {
+            using (var context = new SorteosDbEntities())
+            {
+                return (
+                    from c in context.Compra
+                    where
+                        c.SorteoId == raffleId &&
+                        c.Estado == (int)PurchaseStatus.Pendiente
+
+                    select c
+                ).Count();
+            }
+        }
+
+        public PurchaseModel GetNextPendingByRaffleId(int raffleId)
+        {
+            using (var context = new SorteosDbEntities())
+            {
+                return (
+                    from c in context.Compra
+                    where
+                        c.SorteoId == raffleId &&
+                        c.Estado == (int)PurchaseStatus.Pendiente
+                    orderby c.FechaCreacion descending
+                    select c
+                ).Select(c => new PurchaseModel
+                {
+                    Id = c.Id,
+                    Brand = new BrandModel
+                    {
+                        Id = c.Marca.Id,
+                        Description = c.Marca.Descripcion
+                    },
+                    User = new UserModel { 
+                        Id = c.Usuario.Id,
+                        FullName = c.Usuario.Nombre + " " + c.Usuario.Apellido,
+                        Email = c.Usuario.Email
+                    },
+                    City = c.Ciudad.Nombre,
+                    State = c.Provincia.Nombre,
+                    Qty = c.Cantidad.Value,
+                    InvoicePath = c.FacturaPath,
+                    Raffle = new RaffleModel
+                    {
+                        Id = c.Sorteo.Id,
+                        Description = c.Sorteo.Descripcion
+                    },
+                    Lote = c.Lote,
+                    Type = c.Tipo,
+                    CreatedAt = c.FechaCreacion
+                }).FirstOrDefault();
+
+            }
+        }
+
+        public void UpdateStatus(int purchaseId, PurchaseStatus purchaseStatus) {
+            using (var context = new SorteosDbEntities())
+            {
+                var purchase = context.Compra.FirstOrDefault(c => c.Id == purchaseId);
+                if (purchase == null)
+                    throw new Exception("La compra ya no existe o no es válida.");
+
+                purchase.Estado = (int)purchaseStatus;
+                context.SaveChanges();
+
+            }
+        }
+
+
 
    }
 }

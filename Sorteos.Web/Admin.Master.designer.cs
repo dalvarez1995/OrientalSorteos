@@ -11,62 +11,71 @@ namespace Sorteos.Web
 {
 
 
-    public partial class MobileFirst
+    public partial class Admin
     {
 
         /// <summary>
-        /// head control.
+        /// header control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder header;
 
         /// <summary>
-        /// logo control.
+        /// imgUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder logo;
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgUsuario;
 
         /// <summary>
-        /// userImage control.
+        /// lblNombreCompleto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage userImage;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNombreCompleto;
 
         /// <summary>
-        /// fullName control.
+        /// lblPerfil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fullName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPerfil;
 
         /// <summary>
-        /// main control.
+        /// lblIniciales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder main;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblIniciales;
 
         /// <summary>
-        /// footer control.
+        /// content control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder footer;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder content;
+
+        /// <summary>
+        /// lblAnioActual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAnioActual;
 
         /// <summary>
         /// body control.

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Sorteos Oriental - Sorteos Registrados" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Sorteos.Web.Administracion.Sorteos.Default" %>
+﻿<%@ Page Title="Sorteos Oriental - Sorteos Registrados" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Sorteos.Web.Administracion.Sorteos.Default" %>
 <asp:Content ID="sorteosHeader" ContentPlaceHolderID="header" runat="server">
      <webopt:BundleReference runat="server" Path="~/Content/css/datatables" />
 </asp:Content>
@@ -79,7 +79,7 @@
                             orderable: false,
                             className: 'text-center',
                             render: function (data, type, row) {
-                                return `<i  class="fa fa-2x fa-${data ? 'check-circle' : 'times-circle'}" style="color:${ data ? 'green':'red'};"></i></a>`;
+                                return `<i  class="fa fa-2x fa-${data ? 'check-circle' : 'times-circle'}" title="${data ? 'Activo': 'Inactivo'}" style="color:${ data ? 'green':'red'};"></i>`;
                             },
                         },
                         { data: "CreatedAt", orderable: false, },

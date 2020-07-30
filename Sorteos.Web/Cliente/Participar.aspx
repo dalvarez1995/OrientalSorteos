@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Sorteos Oriental - Participar" Language="C#" MasterPageFile="~/MobileFirst.Master" AutoEventWireup="true" CodeBehind="Participar.aspx.cs" Inherits="Sorteos.Web.Cliente.Participar" %>
+﻿<%@ Page Title="Sorteos Oriental - Participar" Language="C#" MasterPageFile="~/Public.Master" AutoEventWireup="true" CodeBehind="Participar.aspx.cs" Inherits="Sorteos.Web.Cliente.Participar" %>
 
 <asp:Content ID="resumenHead" ContentPlaceHolderID="logo" runat="server">
 </asp:Content>

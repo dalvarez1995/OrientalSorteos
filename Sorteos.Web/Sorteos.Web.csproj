@@ -128,6 +128,7 @@
   <ItemGroup>
     <Content Include="ActivarCuenta.aspx" />
     <Content Include="Administracion\Compras.aspx" />
+    <Content Include="Administracion\Depurar.aspx" />
     <Content Include="Administracion\Estadisticas.aspx" />
     <Content Include="Administracion\Sitio.aspx" />
     <Content Include="Administracion\Sorteos\Editar.aspx" />
@@ -145,7 +146,9 @@
     <Content Include="Content\css\error404.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\images\alert.svg" />
+    <Content Include="Content\images\all-done.svg" />
     <Content Include="Content\images\background.svg" />
+    <Content Include="Content\images\choose-option.svg" />
     <Content Include="Content\images\confirmed.svg" />
     <Content Include="Content\images\default-user.png" />
     <Content Include="Content\images\empty-raffle.svg" />
@@ -263,7 +266,7 @@
     <Content Include="Content\lib\font-awesome\scss\_variables.scss" />
     <Content Include="Auth.Master" />
     <Content Include="app.config" />
-    <Content Include="MobileFirst.Master" />
+    <Content Include="Public.Master" />
     <None Include="Properties\PublishProfiles\Sorteos Dev.pubxml" />
     <None Include="Properties\PublishProfiles\Sorteos Prod.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -1975,7 +1978,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Service.asmx" />
-    <Content Include="Site.Master" />
+    <Content Include="Admin.Master" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Scripts\jquery\jquery.validator.js" />
@@ -1994,6 +1997,13 @@
     </Compile>
     <Compile Include="Administracion\Compras.aspx.designer.cs">
       <DependentUpon>Compras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Depurar.aspx.cs">
+      <DependentUpon>Depurar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Depurar.aspx.designer.cs">
+      <DependentUpon>Depurar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administracion\Estadisticas.aspx.cs">
       <DependentUpon>Estadisticas.aspx</DependentUpon>
@@ -2105,12 +2115,12 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MobileFirst.Master.cs">
-      <DependentUpon>MobileFirst.Master</DependentUpon>
+    <Compile Include="Public.Master.cs">
+      <DependentUpon>Public.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MobileFirst.Master.designer.cs">
-      <DependentUpon>MobileFirst.Master</DependentUpon>
+    <Compile Include="Public.Master.designer.cs">
+      <DependentUpon>Public.Master</DependentUpon>
     </Compile>
     <Compile Include="Olvido-Password.aspx.cs">
       <DependentUpon>Olvido-Password.aspx</DependentUpon>
@@ -2138,12 +2148,12 @@
       <DependentUpon>Service.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Site.Master.cs">
-      <DependentUpon>Site.Master</DependentUpon>
+    <Compile Include="Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Site.Master.designer.cs">
-      <DependentUpon>Site.Master</DependentUpon>
+    <Compile Include="Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
     <Compile Include="WebContext.cs" />
   </ItemGroup>

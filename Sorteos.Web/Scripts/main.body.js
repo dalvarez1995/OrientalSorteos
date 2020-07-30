@@ -39,7 +39,6 @@ const ajaxPostSettings = {
     contentType: "application/json; charset=utf-8",
     type: "POST",
     dataType: 'json',
-    timeout: 3000
 };
 
 function ajaxPOST(url, data, onSucess, onErrorCallback) {

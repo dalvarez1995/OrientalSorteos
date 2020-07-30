@@ -12,7 +12,7 @@ namespace Sorteos.Services
                 return context.Ciudad.Where( c => c.ProvinciaId == idState).Select( c => new CityModel{ 
                     Id = c.Id,
                     Name = c.Nombre
-                }).ToList();
+                }).OrderBy( c => c.Name).ToList();
             }
         }
     }

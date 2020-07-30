@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Sitio.aspx.cs" Inherits="Sorteos.Web.Administracion.Sitio" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" ValidateRequest="false" CodeBehind="Sitio.aspx.cs" Inherits="Sorteos.Web.Administracion.Sitio" %>
 <asp:Content ID="sitioHeader" ContentPlaceHolderID="header" runat="server">
 </asp:Content>
 <asp:Content ID="sitioContent" ContentPlaceHolderID="content" runat="server">

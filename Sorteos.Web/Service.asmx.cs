@@ -4,6 +4,7 @@ using System;
 using System.Web.Services;
 using Sorteos.Services.Datatables.Core;
 using Sorteos.Services;
+using Sorteos.Services.Models;
 
 namespace Sorteos.Web
 {
@@ -39,6 +40,32 @@ namespace Sorteos.Web
             CityService cityService = new CityService();
             var cities = cityService.GetCitiesByState(stateId);
             return JsonConvert.SerializeObject(cities);
+        }
+
+        [WebMethod(EnableSession = true)]
+        public string GetNextPendingPurchase(int raffleId)
+        {
+            WebContext.ValidateAdminArea();
+
+            PurchaseService purchaseService = new PurchaseService();
+            var purchase = purchaseService.GetNextPendingByRaffleId(raffleId);
+            return JsonConvert.SerializeObject( new { 
+                purchase 
+            });
+        }
+
+        [WebMethod(EnableSession = true)]
+        public string ChangePurchaseStatus(int purchaseId,int status)
+        {
+            WebContext.ValidateAdminArea();
+
+            PurchaseService purchaseService = new PurchaseService();
+            purchaseService.UpdateStatus(purchaseId, (PurchaseStatus)Enum.Parse(typeof(PurchaseStatus), status.ToString()));
+
+            return JsonConvert.SerializeObject(new
+            {
+                status="ok"
+            }); ;
         }
 
         [WebMethod(EnableSession = true)]

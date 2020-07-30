@@ -30,6 +30,7 @@ namespace Sorteos.Web.Administracion.Sorteos
                         txtDescripcion.Text = sorteo.Description;
                         txtFechaInicio.Text = sorteo.BeginDate.ToString("yyyy-MM-dd");
                         txtFechaFin.Text = sorteo.EndDate.ToString("yyyy-MM-dd");
+                        chkActivo.Checked = sorteo.Active;
                         return;
                     }
                 }

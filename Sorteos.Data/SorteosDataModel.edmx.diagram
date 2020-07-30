@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="27d219b7abc947a9a9e1f5bfc52ada3e" Name="Diagram1">
+      <Diagram DiagramId="27d219b7abc947a9a9e1f5bfc52ada3e" Name="SorteoDbDiagram" ZoomLevel="64">
         <EntityTypeShape EntityType="SorteosDbDevModel.Ciudad" Width="1.5" PointX="3" PointY="2.125" />
         <EntityTypeShape EntityType="SorteosDbDevModel.Marca" Width="1.5" PointX="3" PointY="12.75" />
         <EntityTypeShape EntityType="SorteosDbDevModel.Perfil" Width="1.5" PointX="0.75" PointY="8.75" />
@@ -20,13 +20,13 @@
         <AssociationConnector Association="SorteosDbDevModel.FK__PerfilPer__Perfi__6D031153" />
         <EntityTypeShape EntityType="SorteosDbDevModel.Lote" Width="1.5" PointX="0.5" PointY="13.875" />
         <AssociationConnector Association="SorteosDbDevModel.FK__Lote__SorteoId__160526E6" />
-        <EntityTypeShape EntityType="SorteosDbDevModel.Compra" Width="1.5" PointX="8.25" PointY="8.25" />
+        <EntityTypeShape EntityType="SorteosDbDevModel.Compra" Width="1.5" PointX="8.25" PointY="8.125" />
         <AssociationConnector Association="SorteosDbDevModel.FK__Compra__CiudadId__42D7CD5D" />
         <AssociationConnector Association="SorteosDbDevModel.FK__Compra__MarcaId__40EF84EB" />
         <AssociationConnector Association="SorteosDbDevModel.FK__Compra__Provinci__41E3A924" />
         <AssociationConnector Association="SorteosDbDevModel.FK__Compra__SorteoId__3F073C79" />
         <AssociationConnector Association="SorteosDbDevModel.FK__Compra__UsuarioI__3FFB60B2" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

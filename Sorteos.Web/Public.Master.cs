@@ -1,14 +1,9 @@
-﻿using Sorteos.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Sorteos.Web
 {
-    public partial class SiteMaster : MasterPage
+    public partial class Public : MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,7 +14,7 @@ namespace Sorteos.Web
                 Session["ShowAlert"] = null;
 
             }
-            WebContext.ValidateAdminArea();
+            WebContext.ValidateSession();
 
             var currentUser = WebContext.GetCurrentUser();
             if (currentUser == null)
@@ -28,14 +23,18 @@ namespace Sorteos.Web
                 return;
             }
 
-            lblNombreCompleto.InnerText = currentUser.FullName;
-            lblPerfil.InnerText = currentUser.Role.Description;
+            fullName.InnerText = currentUser.FullName;
+            if (WebContext.IsFacebookLogged()) {
+                userImage.Src = WebContext.GetFacebookUser().PictureUrl;
+            }
         }
 
-        protected void Logout(object sender, EventArgs e) {
+        protected void Logout(object sender, EventArgs e)
+        {
             Session.RemoveAll();
-            Response.Redirect("/Login",false);
+            Response.Redirect("/Login", false);
             return;
         }
+
     }
 }

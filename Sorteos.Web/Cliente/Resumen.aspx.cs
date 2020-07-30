@@ -23,8 +23,8 @@ namespace Sorteos.Web.Cliente
             RaffleService raffleService = new RaffleService();
             PurchaseService purchaseService = new PurchaseService();
 
-            var numOfPurchases = purchaseService.GetCustomerPurchasesCount(WebContext.GetCurrentUser().Email);
             var activeRaffle = raffleService.findCurrentRaffle();
+            var numOfPurchases = purchaseService.GetCustomerPurchasesCount(WebContext.GetCurrentUser().Email,activeRaffle.Id);
             nombreSorteo.InnerText = activeRaffle.Description;
 
             if (numOfPurchases == 0)

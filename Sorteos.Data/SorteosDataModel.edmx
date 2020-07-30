@@ -29,6 +29,7 @@
           <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
           <Property Name="FechaModificacion" Type="datetime" />
           <Property Name="Tipo" Type="varchar" MaxLength="20" />
+          <Property Name="Estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Lote">
           <Key>
@@ -354,7 +355,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Ciudad">
           <Key>
             <PropertyRef Name="Id" />
@@ -549,6 +550,7 @@
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
           <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ciudad" Relationship="SorteosDbDevModel.FK__Compra__CiudadId__42D7CD5D" FromRole="Compra" ToRole="Ciudad" />
           <NavigationProperty Name="Marca" Relationship="SorteosDbDevModel.FK__Compra__MarcaId__40EF84EB" FromRole="Compra" ToRole="Marca" />
           <NavigationProperty Name="Provincia" Relationship="SorteosDbDevModel.FK__Compra__Provinci__41E3A924" FromRole="Compra" ToRole="Provincia" />
@@ -736,6 +738,7 @@
           <EntitySetMapping Name="Compra">
             <EntityTypeMapping TypeName="SorteosDbDevModel.Compra">
               <MappingFragment StoreEntitySet="Compra">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
