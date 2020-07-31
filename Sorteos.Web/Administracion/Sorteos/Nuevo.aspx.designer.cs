@@ -42,15 +42,6 @@ namespace Sorteos.Web.Administracion.Sorteos
         protected global::System.Web.UI.WebControls.TextBox txtFechaFin;
 
         /// <summary>
-        /// txtContenido control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContenido;
-
-        /// <summary>
         /// chkActivo control.
         /// </summary>
         /// <remarks>

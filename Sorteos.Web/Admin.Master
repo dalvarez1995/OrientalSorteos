@@ -70,18 +70,15 @@
                             <a href="/Administracion/Depurar"><i class="fas fa-vote-yea "></i><span class="nav-label" style="font-size: medium;">Depurar</span></a>
                         </li>
                         <li>
+                            <a href="/Administracion/Ganadores"><i class="fas fa-award "></i><span class="nav-label" style="font-size: medium;">Ganadores</span></a>
+                        </li>
+                        <li>
                             <a href="/Administracion/Estadisticas"><i class="fas fa-file-invoice-dollar "></i><span class="nav-label" style="font-size: medium;">Estadisticas</span></a>
                         </li>
                         <li>
                             <a href="/Administracion/Sitio"><i class="fas fa-globe-americas "></i><span class="nav-label" style="font-size: medium;">Sitio</span></a>
                         </li>
                         <%} %>
-                        <%--<li>
-                            <a href="/Main"><i class="fas fa-info-circle "></i><span class="nav-label" style="font-size: medium;">Detalles Sorteo</span></a>
-                        </li>
-                        <li>
-                            <a href="/Participar"><i class="fas fa-file-invoice-dollar "></i><span class="nav-label" style="font-size: medium;">Ingresar Compras</span></a>
-                        </li>--%>
                     </ul>
                 </div>
             </nav>

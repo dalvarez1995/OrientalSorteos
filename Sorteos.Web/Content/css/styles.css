@@ -395,7 +395,7 @@ nav li.active {
 /* Image Diag*/
 
 
-.modal {
+#modal-image.modal {
     display: none; 
     position: fixed;
     z-index: 1; 
@@ -409,14 +409,14 @@ nav li.active {
     background-color: rgba(0,0,0,0.9); 
 }
 
-.modal-content {
+#modal-image .modal-content {
     margin: auto;
     display: block;
     width: 80%;
     max-width: 700px;
 }
 
-#caption {
+#modal-image #caption {
     margin: auto;
     display: block;
     width: 80%;
@@ -427,7 +427,7 @@ nav li.active {
     height: 150px;
 }
 
-.modal-content, #caption {
+#modal-image .modal-content, #caption {
     animation-name: zoom;
     animation-duration: 0.6s;
 }
@@ -441,7 +441,7 @@ nav li.active {
         transform: scale(1)
     }
 }
-.close {
+#modal-image .close {
     position: absolute;
     top: 15px;
     right: 35px;
@@ -451,14 +451,160 @@ nav li.active {
     transition: 0.3s;
 }
 
-    .close:hover,
-    .close:focus {
+    #modal-image .close:hover,
+    #modal-image .close:focus {
         color: #bbb;
         text-decoration: none;
         cursor: pointer;
     }
 @media only screen and (max-width: 700px) {
-    .modal-content {
+    #modal-image .modal-content {
         width: 100%;
     }
+}
+
+
+
+/* Winner draw*/
+
+.topbox {
+    background: white;
+    padding-bottom: 15px;
+}
+
+.rollbox {
+    margin-top: 50px;
+    height: 200px;
+    border: 1px solid #616161;
+    overflow-x: auto;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+}
+
+    .rollbox > table {
+        width: auto;
+        height: 200px;
+        margin: 0;
+        padding: 0;
+    }
+
+#loadout {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    z-index: 1;
+}
+
+.roller {
+    position: relative;
+    display: block;
+    height: 100%;
+    text-align: center;
+    line-height: 180px;
+    font-size: 0.8em;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+    .roller div {
+        display: block;
+        height: 50px;
+        line-height: 50px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+    }
+
+.inputbox {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.badge {
+    padding-top: 5px;
+    text-shadow: 1px 1px 1px black;
+    margin-bottom: 20px;
+}
+
+.line {
+    width: 2px;
+    height: 198px;
+    top: 1px;
+    left: 50%;
+    position: absolute;
+    background: #FFCE0A;
+    opacity: 0.6;
+    z-index: 2;
+}
+
+#log {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+}
+
+    #log span {
+        font-size: 2em;
+        font-weight: bold;
+        color: #57B3F9;
+    }
+
+#roll {
+    margin-top: 15px;
+}
+
+.roller {
+    height: 180px;
+    width: 180px;
+    margin-right: 10px;
+    background: url('/Content/images/regreso-clases.jpeg'),no-repeat;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 75px;
+    border: 1px solid #ddd;
+}
+
+tr, table, td {
+    margin: 0;
+    padding: 0;
+}
+
+    td:nth-child(even) .roller {
+        /*color: white;*/
+    }
+
+
+#winner-modal {
+    background-color: rgba(0,0,0,.4);
+}
+
+#winner-modal .modal-content {
+    height: 80vh;
+    background-color: transparent;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+}
+
+    #winner-modal .modal-content .message-wrapper {
+        margin-top: 20vh;
+        letter-spacing: 1px;
+    }
+
+#winner-modal h1 {
+    color: white;
+    font-size: 70px;
+    text-transform: uppercase;
+}
+
+
+
+#winner-modal p {
+    color: white;
+    font-size: medium;
+    text-transform: uppercase;
 }

@@ -7,56 +7,65 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sorteos.Web.Administracion.Sorteos
+namespace Sorteos.Web.Administracion
 {
 
 
-    public partial class Editar
+    public partial class Ganadores
     {
 
         /// <summary>
-        /// txtDescripcion control.
+        /// cboSorteos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
+        protected global::System.Web.UI.WebControls.DropDownList cboSorteos;
 
         /// <summary>
-        /// txtFechaInicio control.
+        /// pnlSelectRaffle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaInicio;
+        protected global::System.Web.UI.WebControls.Panel pnlSelectRaffle;
 
         /// <summary>
-        /// txtFechaFin control.
+        /// pnlFinishedRaffle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaFin;
+        protected global::System.Web.UI.WebControls.Panel pnlFinishedRaffle;
 
         /// <summary>
-        /// chkActivo control.
+        /// pnlWinnerSelection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkActivo;
+        protected global::System.Web.UI.WebControls.Panel pnlWinnerSelection;
 
         /// <summary>
-        /// btnGuardar control.
+        /// txtParticipants control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnGuardar;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtParticipants;
+
+        /// <summary>
+        /// btnExportar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnExportar;
     }
 }

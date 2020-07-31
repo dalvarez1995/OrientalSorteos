@@ -25,7 +25,7 @@ namespace Sorteos.Web.Administracion.Sorteos
 
                 raffleService.Insert(new RaffleModel { 
                     Description  = txtDescripcion.Text,
-                    HtmlCode = txtContenido.Text,
+                    //HtmlCode = txtContenido.Text,
                     BeginDate = DateTime.ParseExact(txtFechaInicio.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None),
                     EndDate = DateTime.ParseExact(txtFechaFin.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None),
                     Active = chkActivo.Checked

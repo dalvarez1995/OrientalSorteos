@@ -112,5 +112,27 @@ namespace Sorteos.Web
             var result = loteService.ValidateLote(lote);
             return JsonConvert.SerializeObject(result);
         }
+
+        [WebMethod(EnableSession = true)]
+        public string AddWinnerToRaffle(int winnerId, int raffleId)
+        {
+            WebContext.ValidateAdminArea();
+            WinnerService winnerService = new WinnerService();
+            RaffleService raffleService = new RaffleService();
+            var next = !raffleService.IsRaffleFinalized(raffleId);
+            if(!next)
+                return JsonConvert.SerializeObject(new
+                {
+                    ok = false,
+                    next
+                });
+
+            winnerService.Insert(winnerId, raffleId);
+            next = !raffleService.IsRaffleFinalized(raffleId);
+            return JsonConvert.SerializeObject(new { 
+                ok = true,
+                next
+            });
+        }
     }
 }

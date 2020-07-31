@@ -77,5 +77,38 @@ namespace Sorteos.Services
             }
         }
 
+        public UserModel GetUserByFullName(string fullName)
+        {
+            using (var context = new SorteosDbEntities())
+            {
+                var firstName = fullName.Split(' ')[0];
+                var lastName = fullName.Split(' ')[1];
+                var userModel = context.Usuario.Where(user => user.Nombre == firstName && user.Apellido == lastName).Select(user => new UserModel
+                {
+                    Id = user.Id,
+                    FullName = user.Nombre + " " + user.Apellido,
+                    Email = user.Email,
+                    Role = new RoleModel
+                    {
+                        Id = user.Id,
+                        Description = user.Perfil.Descripcion,
+                        Special = user.Perfil.PermisosEspeciales
+                    },
+                    Permissions = context.Permiso.Where(perm => user.Perfil.PerfilPermiso
+                                    .Select(pp => pp.PermisoId).Contains(perm.Id)).ToList()
+                                        .Select(per => new PermissionModel
+                                        {
+                                            Id = per.Id,
+                                            Description = per.Descripcion,
+                                            Code = per.Codigo,
+                                            PageUrl = per.PageUrl,
+                                            Group = per.Categoria
+                                        }).ToList()
+                }).FirstOrDefault();
+
+                return userModel;
+            }
+        }
+
     }
 }

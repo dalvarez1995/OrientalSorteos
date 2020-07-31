@@ -130,6 +130,7 @@
     <Content Include="Administracion\Compras.aspx" />
     <Content Include="Administracion\Depurar.aspx" />
     <Content Include="Administracion\Estadisticas.aspx" />
+    <Content Include="Administracion\Ganadores.aspx" />
     <Content Include="Administracion\Sitio.aspx" />
     <Content Include="Administracion\Sorteos\Editar.aspx" />
     <Content Include="Administracion\Sorteos\Nuevo.aspx" />
@@ -153,7 +154,10 @@
     <Content Include="Content\images\default-user.png" />
     <Content Include="Content\images\empty-raffle.svg" />
     <Content Include="Content\images\background-pattern.svg" />
+    <Content Include="Content\images\person-smiley.svg" />
     <Content Include="Content\images\regreso-clases.jpeg" />
+    <Content Include="Content\images\winner_.svg" />
+    <Content Include="Scripts\jquery\jquery.fireworks.js" />
     <Content Include="favicon.ico" />
     <Content Include="Content\images\oriental-logo-2.png" />
     <Content Include="Content\images\oriental-logo.png" />
@@ -2011,6 +2015,13 @@
     </Compile>
     <Compile Include="Administracion\Estadisticas.aspx.designer.cs">
       <DependentUpon>Estadisticas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Ganadores.aspx.cs">
+      <DependentUpon>Ganadores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Ganadores.aspx.designer.cs">
+      <DependentUpon>Ganadores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Administracion\Sitio.aspx.cs">
       <DependentUpon>Sitio.aspx</DependentUpon>

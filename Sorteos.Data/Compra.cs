@@ -31,7 +31,7 @@ namespace Sorteos.Data
         public virtual Ciudad Ciudad { get; set; }
         public virtual Marca Marca { get; set; }
         public virtual Provincia Provincia { get; set; }
-        public virtual Sorteo Sorteo { get; set; }
         public virtual Usuario Usuario { get; set; }
+        public virtual Sorteo Sorteo { get; set; }
     }
 }

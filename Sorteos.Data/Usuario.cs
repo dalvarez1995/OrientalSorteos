@@ -18,6 +18,7 @@ namespace Sorteos.Data
         public Usuario()
         {
             this.Compra = new HashSet<Compra>();
+            this.Ganador = new HashSet<Ganador>();
         }
     
         public int Id { get; set; }
@@ -38,5 +39,7 @@ namespace Sorteos.Data
         public virtual Perfil Perfil { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Compra> Compra { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ganador> Ganador { get; set; }
     }
 }

@@ -58,6 +58,9 @@
     <Compile Include="Compra.cs">
       <DependentUpon>SorteosDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Ganador.cs">
+      <DependentUpon>SorteosDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Lote.cs">
       <DependentUpon>SorteosDataModel.tt</DependentUpon>
     </Compile>

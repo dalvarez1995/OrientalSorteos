@@ -166,20 +166,6 @@
             drawDtCompras();
         });
 
-
-        function throwImageModal(imgSrc, alt) {
-            let modal = document.getElementById("modal-image");
-            let modalImg = document.getElementById("img-modal");
-            let captionText = document.getElementById("caption");
-            modal.style.display = "block";
-            modalImg.src = imgSrc;
-            captionText.innerHTML = alt;
-            let span = document.getElementsByClassName("close")[0];
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-        }
-
         function drawDtCompras() {
             try {
                 //target
@@ -204,7 +190,7 @@
                                                 onclick="throwImageModal('/Content/images/invoices/${data.FacturaPath}','${data.Sorteo} - ${data.NombreCliente}, ${da} de ${mo} del ${ye}');return false;">
                                                 <i  class="fa fa-eye">
                                                 </i>
-                                        </button>'${ data.Estado == 'Invalido' ? restoreButton : ''}`
+                                        </button>${ data.Estado == 'Invalido' ? restoreButton : ''}`
                             },
                             searchable: false,
                             orderable: false,

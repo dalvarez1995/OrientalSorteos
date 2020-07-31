@@ -38,6 +38,7 @@ namespace Sorteos.Services
                     FechaInicio = newRaffle.BeginDate,
                     FechaFin = newRaffle.EndDate,
                     Activo = newRaffle.Active,
+                    Finalizado = false,
                     FechaCreacion = DateTime.UtcNow.AddHours(-5)
                 });
 
@@ -89,6 +90,7 @@ namespace Sorteos.Services
                     EndDate = s.FechaFin,
                     Active = s.Activo,
                     HtmlCode = s.HtmlCode,
+                    Finished = s.Finalizado,
                     CreatedAt = s.FechaCreacion
                 }).FirstOrDefault();
             }
@@ -109,13 +111,32 @@ namespace Sorteos.Services
                             Description = s.Descripcion,
                             BeginDate = s.FechaInicio,
                             EndDate = s.FechaFin,
-                            HtmlCode =s.HtmlCode,
+                            HtmlCode = s.HtmlCode,
+                            Finished = s.Finalizado,
                             CreatedAt = s.FechaCreacion,
                             Active = s.Activo
                         }).FirstOrDefault(); 
             }
         }
 
+        public bool IsRaffleFinalized(int raffleId)
+        {
+            using (var context = new SorteosDbEntities())
+            {
+                var raffle = context.Sorteo.FirstOrDefault( s => s.Id == raffleId);
+                if (raffle == null)
+                    throw new Exception("El sorteo no existe o no es valido");
+
+                if (raffle.NumeroGanadores == raffle.Ganador.Count)
+                {
+                    raffle.Finalizado = true;
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
 
         public List<RaffleModel> GetAllRaffles() {
             using (var context = new SorteosDbEntities())
@@ -126,12 +147,37 @@ namespace Sorteos.Services
                     Description = s.Descripcion,
                     BeginDate = s.FechaInicio,
                     EndDate = s.FechaFin,
+                    HtmlCode = s.HtmlCode,
+                    Finished = s.Finalizado,
                     CreatedAt = s.FechaCreacion,
                     Active = s.Activo
                 }).ToList();
             }
         }
 
+        public List<ParticipantModel> GetParticipants()
+        {
+            using (var context = new SorteosDbEntities())
+            {
+                return (from c in context.Compra
+                        where
+                            c.Estado == (int)PurchaseStatus.Valido
+
+                        group c by c.Usuario into p
+                        select new
+                        {
+                            Id = p.Key.Id,
+                            FullName = p.Key.Nombre + " " + p.Key.Apellido,
+                            Purchases = p.Count()
+                        }
+                    ).Select( p => new ParticipantModel { 
+                        UserId = p.Id,
+                        FullName = p.FullName,
+                        ChancesNumber = p.Purchases
+                    }
+                ).ToList();
+            }
+        }
 
     }
 }

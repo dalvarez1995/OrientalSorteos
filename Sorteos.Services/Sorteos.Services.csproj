@@ -88,6 +88,7 @@
     <Compile Include="Datatables\Core\DTSearch.cs" />
     <Compile Include="Datatables\Core\IDTModel.cs" />
     <Compile Include="Datatables\PurchaseDatatable.cs" />
+    <Compile Include="Datatables\WinnerDatatable.cs" />
     <Compile Include="Datatables\RaffleDatatable.cs" />
     <Compile Include="Datatables\Util\DTRegex.cs" />
     <Compile Include="Datatables\Util\ExtensionMethods.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Models\CityModel.cs" />
     <Compile Include="Models\FacebookService.cs" />
     <Compile Include="Models\FacebookUser.cs" />
+    <Compile Include="Models\ParticipantModel.cs" />
     <Compile Include="Models\PermissionModel.cs" />
     <Compile Include="Models\PurchaseModel.cs" />
     <Compile Include="Models\PurchaseStatus.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="Models\SiteModel.cs" />
     <Compile Include="Models\StateModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\WinnerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -120,6 +123,7 @@
     <Compile Include="SecurityUtil.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="Util.cs" />
+    <Compile Include="WinnerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sorteos.Data\Sorteos.Data.csproj">

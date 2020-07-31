@@ -1,4 +1,18 @@
 ﻿
+Array.prototype.shuffle = function () {
+    let counter = this.length, temp, index;
+    while (counter > 0) {
+        index = (Math.random() * counter--) | 0;
+        temp = this[counter];
+        this[counter] = this[index];
+        this[index] = temp;
+    }
+}
+
+function randomEx(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 // set active nav item
 $(function () {
     const current = location.pathname;
@@ -84,6 +98,19 @@ function ajaxPOST(url, data, onSucess, onErrorCallback) {
         notifier.alert(e.message);
     }
 };
+
+function throwImageModal(imgSrc, alt) {
+    let modal = document.getElementById("modal-image");
+    let modalImg = document.getElementById("img-modal");
+    let captionText = document.getElementById("caption");
+    modal.style.display = "block";
+    modalImg.src = imgSrc;
+    captionText.innerHTML = alt;
+    let span = document.getElementsByClassName("close")[0];
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+}
 
 
 

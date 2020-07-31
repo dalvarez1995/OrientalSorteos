@@ -60,10 +60,10 @@
                                     <asp:RequiredFieldValidator ErrorMessage="Ingrese la fecha de finalización del sorteo" Style="color: red" SetFocusOnError="true" ControlToValidate="txtFechaFin" runat="server" />
                                 </div>
                             </div>
-                            <div class="form-group col-md-12">
+                            <%--<div class="form-group col-md-12">
                                 <label class="font-normal">Contenido</label>
                                 <asp:TextBox ID="txtContenido" ClientIDMode="Static" runat="server" class="form-control" Rows="10" TextMode="MultiLine" type="text"></asp:TextBox>
-                            </div>
+                            </div>--%>
                             <div class="form-group col-md-12">
                                 <label class="font-normal">Activar este sorteo (Solo puede existir un sorteo activo la vez.)</label>
                                 <asp:CheckBox ID="chkActivo" CssClass="form-control" runat="server" />
