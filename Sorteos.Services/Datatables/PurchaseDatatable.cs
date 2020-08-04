@@ -37,6 +37,8 @@ namespace Sorteos.Services.Datatables
             Int32.TryParse(request.custom.Where(p => p.key == "ciudadId").Select(p => p.value).FirstOrDefault(), out ciudadId);
             var estadoId = 0;
             Int32.TryParse(request.custom.Where(p => p.key == "estado").Select(p => p.value).FirstOrDefault(), out estadoId);
+            var usuarioId = 0;
+            Int32.TryParse(request.custom.Where(p => p.key == "usuarioId").Select(p => p.value).FirstOrDefault(), out usuarioId);
 
             string tipo = request.custom.Where(p => p.key == "tipo").Select(p => p.value).FirstOrDefault() ?? "";
             string cliente = request.custom.Where(p => p.key == "cliente").Select(p => p.value).FirstOrDefault() ?? "";
@@ -63,6 +65,8 @@ namespace Sorteos.Services.Datatables
                 predicate = predicate.And(tbl => tbl.CiudadId == ciudadId);
             if (estadoId > 0)
                 predicate = predicate.And(tbl => tbl.Estado == estadoId);
+            if (usuarioId > 0)
+                predicate = predicate.And(tbl => tbl.UsuarioId == usuarioId);
 
             if (!string.IsNullOrEmpty(tipo))
                 predicate = predicate.And(tbl => tbl.Tipo == tipo);

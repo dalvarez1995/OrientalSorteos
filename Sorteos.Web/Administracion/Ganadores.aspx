@@ -417,7 +417,7 @@
 
                 generarDT(tableID, dtImplName, {
                     sorteoId: $('#cboSorteos').val(),
-                    cliente: $('#purchases-modal').data('id'),
+                    usuarioId: `${$('#modal-purchases').data('id')}`,
                     estado: '20'
                 }, '/Service.asmx/GetDT', tableOpts, () => { dtInjectServerButton('content_btnExportar', 'tblCompras'); });
 
