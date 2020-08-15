@@ -15,7 +15,7 @@ namespace Sorteos.Web
             if (!Page.IsPostBack)
             {
                 SiteService siteService = new SiteService();
-                var site = siteService.GetSite();
+                var site = siteService.GetSiteById(AppSingleton.Instance.Sitio.Id);
                 popContent.InnerHtml = site.POP;
             }
         }

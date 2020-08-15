@@ -14,7 +14,8 @@ namespace Sorteos.Web.Administracion
         {
             if (!Page.IsPostBack) {
                 SiteService siteService = new SiteService();
-                var site = siteService.GetSite();
+
+                var site = siteService.GetSiteById(AppSingleton.Instance.Sitio.Id);
                 txtCondicionesServicio.Text = site.TOS;
                 txtPoliticaPrivacidad.Text = site.POP;
             }
@@ -25,7 +26,7 @@ namespace Sorteos.Web.Administracion
             try
             {
                 SiteService siteService = new SiteService();
-                siteService.UpdateSite(txtCondicionesServicio.Text, txtPoliticaPrivacidad.Text);
+                siteService.UpdateSite(AppSingleton.Instance.Sitio.Id,txtCondicionesServicio.Text, txtPoliticaPrivacidad.Text);
                 Session["ShowAlert"] = $"success('Sitio actualizado satisfactoriamente','Exito!');";
                 Response.Redirect("/Administracion/Estadisticas", false);
                 return;

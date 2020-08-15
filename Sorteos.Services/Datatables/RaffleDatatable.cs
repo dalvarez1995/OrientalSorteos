@@ -27,19 +27,20 @@ namespace Sorteos.Services.Datatables
 
         public dynamic BuildData(IList<Sorteo> source)
         {
-            List<RaffleModel> listOrdenes = new List<RaffleModel>();
+            List<RaffleModel> listRaffle = new List<RaffleModel>();
             foreach (var item in source)
             {
-                var orden = new RaffleModel();
-                orden.Id = item.Id;
-                orden.Description = item.Descripcion;
-                orden.BeginDate = item.FechaInicio;
-                orden.EndDate = item.FechaFin;
-                orden.Active = item.Activo;
-                listOrdenes.Add(orden);
+                var raffle = new RaffleModel();
+                raffle.Id = item.Id;
+                raffle.Description = item.Descripcion;
+                raffle.BeginDate = item.FechaInicio;
+                raffle.SiteUrl = item?.Sitio?.BaseUrl ?? "";
+                raffle.EndDate = item.FechaFin;
+                raffle.Active = item.Activo;
+                listRaffle.Add(raffle);
             }
 
-            return listOrdenes;
+            return listRaffle;
         }
 
         public Expression<Func<Sorteo, bool>> BuildSearchPredicate(DTSearch search)

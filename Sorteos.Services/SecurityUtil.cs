@@ -23,7 +23,7 @@ namespace Sorteos.Services
         public static string GenerateJwtToken(string[][] parms,int? expireMinutes = null)
         {
 
-            var securityKey = new SymmetricSecurityKey(Encoding.Default.GetBytes(Settings.Default.TokenSecret));
+            var securityKey = new SymmetricSecurityKey(Encoding.Default.GetBytes(AppSingleton.Instance.TokenSecret));
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
 
             // create a claimsIdentity
@@ -92,7 +92,7 @@ namespace Sorteos.Services
 
             validationParameters.ValidAudience = _AUDIENCE_TOKEN;
             validationParameters.ValidIssuer = _ISSUER_TOKEN;
-            validationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Settings.Default.TokenSecret));
+            validationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppSingleton.Instance.TokenSecret));
 
             ClaimsPrincipal principal = new ClaimsPrincipal();
             try

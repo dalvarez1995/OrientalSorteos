@@ -137,9 +137,7 @@
     <Content Include="App_Data\app_offline.htm" />
     <Content Include="Cambio-Password.aspx" />
     <Content Include="Cliente\Participar.aspx" />
-    <Content Include="Cliente\Default.aspx" />
     <Content Include="Cliente\Resumen.aspx" />
-    <Content Include="Cliente\Sorteo.aspx" />
     <Content Include="CompletarRegistro.aspx" />
     <Content Include="Administracion\Sorteos\Default.aspx" />
     <Content Include="Condiciones-Uso.aspx" />
@@ -272,7 +270,8 @@
     <Content Include="app.config" />
     <Content Include="Public.Master" />
     <None Include="Properties\PublishProfiles\Sorteos Dev.pubxml" />
-    <None Include="Properties\PublishProfiles\Sorteos Prod.pubxml" />
+    <None Include="Properties\PublishProfiles\Sorteos PROD 2.pubxml" />
+    <None Include="Properties\PublishProfiles\Sorteos PROD.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Content\lib\awesome-notifications\css\style.css" />
     <Content Include="Content\lib\awesome-notifications\js\index.var.js" />
@@ -2067,26 +2066,12 @@
     <Compile Include="Auth.Master.designer.cs">
       <DependentUpon>Auth.Master</DependentUpon>
     </Compile>
-    <Compile Include="Cliente\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Cliente\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Cliente\Resumen.aspx.cs">
       <DependentUpon>Resumen.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Cliente\Resumen.aspx.designer.cs">
       <DependentUpon>Resumen.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Cliente\Sorteo.aspx.cs">
-      <DependentUpon>Sorteo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Cliente\Sorteo.aspx.designer.cs">
-      <DependentUpon>Sorteo.aspx</DependentUpon>
     </Compile>
     <Compile Include="CompletarRegistro.aspx.cs">
       <DependentUpon>CompletarRegistro.aspx</DependentUpon>

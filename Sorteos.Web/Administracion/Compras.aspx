@@ -187,7 +187,7 @@
                                 let restoreButton = `</br><button title="Restaurar Compra" class="btn btn-primary mt-2" onclick="changePurchaseStatus(${data.Id},10);return false;" ><i class="fa fa-sync"></i></button>`;
                                 return `<button class="btn btn-primary" 
                                                 title="Ver Imagen"
-                                                onclick="throwImageModal('/Content/images/invoices/${data.FacturaPath}','${data.Sorteo} - ${data.NombreCliente}, ${da} de ${mo} del ${ye}');return false;">
+                                                onclick="throwImageModal('${data.FacturaPath}','${data.Sorteo} - ${data.NombreCliente}, ${da} de ${mo} del ${ye}');return false;">
                                                 <i  class="fa fa-eye">
                                                 </i>
                                         </button>${ data.Estado == 'Invalido' ? restoreButton : ''}`

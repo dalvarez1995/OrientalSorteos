@@ -32,6 +32,7 @@
                                             <th>DESCRIPCION</th>
                                             <th>FECHA INICIO</th>
                                             <th>FECHA FIN</th>
+                                            <th>SITIO</th>
                                             <th>ACTIVO</th>
                                             <th>FECHA CREACION</th>
                                         </tr>
@@ -74,6 +75,7 @@
                         { data: "Description", orderable: false, },
                         { data: "BeginDate", orderable: false, },
                         { data: "EndDate", orderable: false, },
+                        { data: "SiteUrl", orderable: false, },
                         {
                             data: "Active",
                             orderable: false,

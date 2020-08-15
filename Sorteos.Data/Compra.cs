@@ -27,11 +27,12 @@ namespace Sorteos.Data
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public string Tipo { get; set; }
         public int Estado { get; set; }
+        public string TipoPublicidad { get; set; }
     
         public virtual Ciudad Ciudad { get; set; }
         public virtual Marca Marca { get; set; }
         public virtual Provincia Provincia { get; set; }
-        public virtual Usuario Usuario { get; set; }
         public virtual Sorteo Sorteo { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

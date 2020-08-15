@@ -12,6 +12,8 @@ namespace Sorteos.Services.Models
         public string Description { get; set; }
         public string HtmlCode { get; set; }
         public int ExtraPoints { get; set; }
+        public string SiteUrl { get; set; }
+        public int? SiteId { get; set; }
         public int WinnersNumber { get; set; }
         public bool Finished { get; set; }
         public DateTime BeginDate { get; set; }

@@ -10,26 +10,92 @@ namespace Sorteos.Services
 {
     public class SiteService
     {
-        public SiteModel GetSite() {
-            using (var context = new SorteosDbEntities()) {
-                return context.Sitio.Select(s => new SiteModel
+        public SiteModel GetSiteByClientId(string clientId)
+        {
+            using (var context = new SorteosDbEntities())
+            {
+                return context.Sitio.Where(s => s.ClientId == clientId).Select(s => new SiteModel
                 {
                     Id = s.Id,
+                    PageTitle = s.PageTitle,
                     TOS = s.TOS,
-                    POP = s.POP
+                    POP = s.POP,
+                    BaseUrl = s.BaseUrl,
+                    Company = s.Company,
+                    EmailAccount = s.EmailAccount,
+                    FacebookClientId = s.FacebookClientId,
+                    FacebookLink = s.FacebookLink,
+                    FacebookRedirectUri = s.FacebookRedirectUri,
+                    FacebookSecretKey = s.FacebookSecretKey,
+                    InstagramLink = s.InstagramLink,
+                    SendGridApiKey = s.SendGridApiKey,
+                    WhatsappLink = s.WhatsappLink
                 }).FirstOrDefault();
             }
         }
 
-        public void UpdateSite(string tos, string pop)
+        public SiteModel GetSiteById(int id)
         {
             using (var context = new SorteosDbEntities())
             {
-                var site = context.Sitio.FirstOrDefault();
+                return context.Sitio.Where(s => s.Id == id).Select(s => new SiteModel
+                {
+                    Id = s.Id,
+                    PageTitle = s.PageTitle,
+                    TOS = s.TOS,
+                    POP = s.POP,
+                    BaseUrl = s.BaseUrl,
+                    Company = s.Company,
+                    EmailAccount = s.EmailAccount,
+                    FacebookClientId = s.FacebookClientId,
+                    FacebookLink = s.FacebookLink,
+                    FacebookRedirectUri = s.FacebookRedirectUri,
+                    FacebookSecretKey = s.FacebookSecretKey,
+                    InstagramLink = s.InstagramLink,
+                    SendGridApiKey = s.SendGridApiKey,
+                    WhatsappLink = s.WhatsappLink
+                }).FirstOrDefault();
+            }
+        }
+
+        public void UpdateSite(int id, string tos, string pop)
+        {
+            using (var context = new SorteosDbEntities())
+            {
+                var site = context.Sitio.Where(s => s.Id == id).FirstOrDefault();
                 site.TOS = tos;
                 site.POP = pop;
 
                 context.SaveChanges();
+            }
+        }
+
+
+        public List<SiteModel> GetAllSites(bool showNonActive = false)
+        {
+            using (var context = new SorteosDbEntities())
+            {
+                var query = context.Sitio.AsQueryable();
+                if (!showNonActive)
+                    query = query.Where(s => s.Activo == true);
+
+                return query.Select(s => new SiteModel
+                {
+                    Id = s.Id,
+                    PageTitle = s.PageTitle,
+                    TOS = s.TOS,
+                    POP = s.POP,
+                    BaseUrl = s.BaseUrl,
+                    Company = s.Company,
+                    EmailAccount = s.EmailAccount,
+                    FacebookClientId = s.FacebookClientId,
+                    FacebookLink = s.FacebookLink,
+                    FacebookRedirectUri = s.FacebookRedirectUri,
+                    FacebookSecretKey = s.FacebookSecretKey,
+                    InstagramLink = s.InstagramLink,
+                    SendGridApiKey = s.SendGridApiKey,
+                    WhatsappLink = s.WhatsappLink
+                }).ToList();
             }
         }
     }

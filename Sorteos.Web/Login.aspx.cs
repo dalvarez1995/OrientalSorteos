@@ -8,6 +8,7 @@ namespace Sorteos.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = $"Login - {AppSingleton.Instance.Sitio.PageTitle}";
             try
             {
                 if (!Page.IsPostBack)

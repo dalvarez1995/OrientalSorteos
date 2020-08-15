@@ -38,17 +38,17 @@ namespace Sorteos.Services
             }
         }
 
-        public void ResendOtpCode(string email,string otp)
+        public async void ResendOtpCode(string email,string otp)
         {
             using (var context = new SorteosDbEntities())
             {
                 var userFound = context.Usuario.Where(user => user.Email == email).FirstOrDefault();
-                if (userFound != null)
+                if (userFound == null)
                     throw new Exception("El usuario que esta intentando activar ya no existe.");
 
                 userFound.OtpCode = otp;
                 context.SaveChanges();
-                EmailService.sendActivationAccountEmail(userFound.Email, otp);
+                await EmailService.sendActivationAccountEmail(userFound.Email, otp);
             }
         }
 
@@ -150,8 +150,8 @@ namespace Sorteos.Services
         public string FacebookLogin() {
             FacebookClient fbc = new FacebookClient();
 
-            var clientId = Settings.Default.FacebookClientId;
-            var redirectUri = Settings.Default.FacebookRedirectUri;
+            var clientId = AppSingleton.Instance.Sitio.FacebookClientId;
+            var redirectUri = AppSingleton.Instance.Sitio.FacebookRedirectUri;
 
             var loginUrl = fbc.GetLoginUrl(new
             {
@@ -167,9 +167,9 @@ namespace Sorteos.Services
         public string GetFacebookUserAccessToken(string code) {
             FacebookClient fbc = new FacebookClient();
 
-            var clientId = Settings.Default.FacebookClientId;
-            var clientSecretKey = Settings.Default.FacebookSecretKey;
-            var redirectUri = Settings.Default.FacebookRedirectUri;
+            var clientId = AppSingleton.Instance.Sitio.FacebookClientId;
+            var clientSecretKey = AppSingleton.Instance.Sitio.FacebookSecretKey;
+            var redirectUri = AppSingleton.Instance.Sitio.FacebookRedirectUri;
 
             dynamic result = fbc.Post("oauth/access_token", new
             {
@@ -188,8 +188,8 @@ namespace Sorteos.Services
         private string GetExtendedAccessToken(string ShortLivedToken)
         {
             FacebookClient client = new FacebookClient();
-            var clientId = Settings.Default.FacebookClientId;
-            var clientSecretKey = Settings.Default.FacebookSecretKey;
+            var clientId = AppSingleton.Instance.Sitio.FacebookClientId;
+            var clientSecretKey = AppSingleton.Instance.Sitio.FacebookSecretKey;
             string extendedToken = "";
             try
             {

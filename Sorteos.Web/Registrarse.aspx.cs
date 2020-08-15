@@ -7,6 +7,7 @@ namespace Sorteos.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = $"Registrarse - {AppSingleton.Instance.Sitio.PageTitle}";
             if (Session["LoggedUser"] != null)
             {
                 Response.Redirect("/");

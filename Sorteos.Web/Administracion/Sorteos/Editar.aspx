@@ -64,12 +64,20 @@
                                 <label class="font-normal">Contenido</label>
                                 <asp:TextBox ID="txtContenido" ClientIDMode="Static" runat="server" class="form-control" Rows="10" TextMode="MultiLine" type="text"></asp:TextBox>
                             </div>--%>
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
+                                <label class="font-normal">Sitio</label>
+                                <div class="input-group date">
+                                    <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                    <asp:DropDownList ID="cboSitios" ClientIDMode="Static" AutoPostBack="true" runat="server" class="form-control">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label class="font-normal">Activar este sorteo (Solo puede existir un sorteo activo la vez.)</label>
                                 <asp:CheckBox ID="chkActivo" CssClass="form-control" runat="server" />
                             </div>
                             <div class="form-group col-md-12 justify-content-center text-center">
-                                <button id="btnGuardar" type="submit" onserverclick="btnGuardar_ServerClick" runat="server" class="btn btn-primary"  ><i class="fa fa-save m-r-sm"></i>Guardar</button>
+                                <button id="btnGuardar" type="submit" onserverclick="btnGuardar_ServerClick" runat="server" class="btn btn-primary"><i class="fa fa-save m-r-sm"></i>Guardar</button>
                             </div>
                         </div>
                     </div>
@@ -79,7 +87,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="sorteosEditBody" ContentPlaceHolderID="body" runat="server">
-    <script src="https://cdn.tiny.cloud/1/aftjeq0dcidzbidqqx1n1wzmbvyhci8f9wl5zrwcx20r3g9s/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <%--<script src="https://cdn.tiny.cloud/1/aftjeq0dcidzbidqqx1n1wzmbvyhci8f9wl5zrwcx20r3g9s/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
     <script>
         tinymce.init({
@@ -90,6 +98,6 @@
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
         });
-    </script>
+    </script>--%>
 
 </asp:Content>

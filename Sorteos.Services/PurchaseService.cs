@@ -12,17 +12,13 @@ namespace Sorteos.Services
 {
    public class PurchaseService
    {
-        public void Insert(string lote,string tipo,int cantidad,int cityId, int brandId, int stateId, int userId, string invoicePath) {
+        public void Insert(string lote,string publicity, string purchaseSource,int qty,int cityId, int brandId, int stateId,int raffleId, int userId, string invoicePath) {
 
             using (var context = new SorteosDbEntities())
             {
-                RaffleService raffleService = new RaffleService();
-                var currentRaffle = raffleService.findCurrentRaffle();
-                if (currentRaffle == null)
-                    throw new Exception("No exiten sorteos activos. Inténtelo más tarde");
 
                 // validations
-                if (cantidad <= 0)
+                if (qty <= 0)
                     throw new Exception("Cantidad no válida");
                 if(string.IsNullOrEmpty(lote))
                     throw new Exception("Lote del producto no válido.");
@@ -40,11 +36,12 @@ namespace Sorteos.Services
                 {
                     Lote = lote,
                     CiudadId = cityId,
-                    Cantidad = cantidad,
-                    Tipo = tipo,
+                    Cantidad = qty,
+                    TipoPublicidad = publicity,
+                    Tipo = purchaseSource,
                     MarcaId = brand.Id,
                     ProvinciaId = state.Id,
-                    SorteoId = currentRaffle.Id,
+                    SorteoId = raffleId,
                     UsuarioId = userId,
                     FacturaPath = invoicePath,
                     Estado = (int)PurchaseStatus.Pendiente,
@@ -88,6 +85,7 @@ namespace Sorteos.Services
 
         public PurchaseModel GetNextPendingByRaffleId(int raffleId)
         {
+            var raffleService = new RaffleService();
             using (var context = new SorteosDbEntities())
             {
                 return (
@@ -113,7 +111,7 @@ namespace Sorteos.Services
                     City = c.Ciudad.Nombre,
                     State = c.Provincia.Nombre,
                     Qty = c.Cantidad.Value,
-                    InvoicePath = c.FacturaPath,
+                    InvoicePath = raffleService.GetRaffleMediaPath(c.FacturaPath, "invoices", c.SorteoId.Value),
                     Raffle = new RaffleModel
                     {
                         Id = c.Sorteo.Id,

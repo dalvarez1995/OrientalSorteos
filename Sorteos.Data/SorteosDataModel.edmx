@@ -30,6 +30,7 @@
           <Property Name="FechaModificacion" Type="datetime" />
           <Property Name="Tipo" Type="varchar" MaxLength="20" />
           <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="TipoPublicidad" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Ganador">
           <Key>
@@ -100,6 +101,20 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="POP" Type="nvarchar(max)" />
           <Property Name="TOS" Type="nvarchar(max)" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="500" />
+          <Property Name="Company" Type="varchar" MaxLength="500" />
+          <Property Name="EmailAccount" Type="varchar" MaxLength="500" />
+          <Property Name="BaseUrl" Type="varchar" MaxLength="500" />
+          <Property Name="PageTitle" Type="varchar" MaxLength="200" />
+          <Property Name="FacebookClientId" Type="varchar" MaxLength="200" />
+          <Property Name="FacebookSecretKey" Type="varchar" MaxLength="200" />
+          <Property Name="FacebookRedirectUri" Type="varchar" MaxLength="200" />
+          <Property Name="SendGridApiKey" Type="varchar" MaxLength="200" />
+          <Property Name="FacebookLink" Type="varchar" MaxLength="200" />
+          <Property Name="InstagramLink" Type="varchar" MaxLength="200" />
+          <Property Name="WhatsappLink" Type="varchar" MaxLength="200" />
+          <Property Name="MasterSite" Type="bit" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Sorteo">
           <Key>
@@ -117,6 +132,7 @@
           <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="NumeroGanadores" Type="int" />
           <Property Name="Finalizado" Type="bit" Nullable="false" />
+          <Property Name="SitioId" Type="int" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -269,6 +285,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Sorteo__SitioId__57D2EA43">
+          <End Role="Sitio" Type="Self.Sitio" Multiplicity="0..1" />
+          <End Role="Sorteo" Type="Self.Sorteo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sitio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sorteo">
+              <PropertyRef Name="SitioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__PerfilI__3A42875C">
           <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -338,6 +366,10 @@
             <End Role="Permiso" EntitySet="Permiso" />
             <End Role="PerfilPermiso" EntitySet="PerfilPermiso" />
           </AssociationSet>
+          <AssociationSet Name="FK__Sorteo__SitioId__57D2EA43" Association="Self.FK__Sorteo__SitioId__57D2EA43">
+            <End Role="Sitio" EntitySet="Sitio" />
+            <End Role="Sorteo" EntitySet="Sorteo" />
+          </AssociationSet>
           <AssociationSet Name="FK__Usuario__PerfilI__3A42875C" Association="Self.FK__Usuario__PerfilI__3A42875C">
             <End Role="Perfil" EntitySet="Perfil" />
             <End Role="Usuario" EntitySet="Usuario" />
@@ -354,7 +386,6 @@
           <EntitySet Name="PerfilPermiso" EntityType="SorteosDbDevModel.PerfilPermiso" />
           <EntitySet Name="Permiso" EntityType="SorteosDbDevModel.Permiso" />
           <EntitySet Name="Provincia" EntityType="SorteosDbDevModel.Provincia" />
-          <EntitySet Name="Sitio" EntityType="SorteosDbDevModel.Sitio" />
           <EntitySet Name="Usuario" EntityType="SorteosDbDevModel.Usuario" />
           <AssociationSet Name="FK__Ciudad__Provinci__74A4331B" Association="SorteosDbDevModel.FK__Ciudad__Provinci__74A4331B">
             <End Role="Provincia" EntitySet="Provincia" />
@@ -373,6 +404,20 @@
             <End Role="PerfilPermiso" EntitySet="PerfilPermiso" />
           </AssociationSet>
           <EntitySet Name="Lote" EntityType="SorteosDbDevModel.Lote" />
+          <EntitySet Name="Sorteo" EntityType="SorteosDbDevModel.Sorteo" />
+          <AssociationSet Name="FK__Lote__SorteoId__3E131840" Association="SorteosDbDevModel.FK__Lote__SorteoId__3E131840">
+            <End Role="Sorteo" EntitySet="Sorteo" />
+            <End Role="Lote" EntitySet="Lote" />
+          </AssociationSet>
+          <EntitySet Name="Ganador" EntityType="SorteosDbDevModel.Ganador" />
+          <AssociationSet Name="FK__Ganador__SorteoI__54F67D98" Association="SorteosDbDevModel.FK__Ganador__SorteoI__54F67D98">
+            <End Role="Sorteo" EntitySet="Sorteo" />
+            <End Role="Ganador" EntitySet="Ganador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ganador__Usuario__5402595F" Association="SorteosDbDevModel.FK__Ganador__Usuario__5402595F">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Ganador" EntitySet="Ganador" />
+          </AssociationSet>
           <EntitySet Name="Compra" EntityType="SorteosDbDevModel.Compra" />
           <AssociationSet Name="FK__Compra__CiudadId__42D7CD5D" Association="SorteosDbDevModel.FK__Compra__CiudadId__42D7CD5D">
             <End Role="Ciudad" EntitySet="Ciudad" />
@@ -386,27 +431,18 @@
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
-          <AssociationSet Name="FK__Compra__UsuarioI__3FFB60B2" Association="SorteosDbDevModel.FK__Compra__UsuarioI__3FFB60B2">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Compra" EntitySet="Compra" />
-          </AssociationSet>
-          <EntitySet Name="Sorteo" EntityType="SorteosDbDevModel.Sorteo" />
           <AssociationSet Name="FK__Compra__SorteoId__3F073C79" Association="SorteosDbDevModel.FK__Compra__SorteoId__3F073C79">
             <End Role="Sorteo" EntitySet="Sorteo" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
-          <AssociationSet Name="FK__Lote__SorteoId__3E131840" Association="SorteosDbDevModel.FK__Lote__SorteoId__3E131840">
-            <End Role="Sorteo" EntitySet="Sorteo" />
-            <End Role="Lote" EntitySet="Lote" />
-          </AssociationSet>
-          <EntitySet Name="Ganador" EntityType="SorteosDbDevModel.Ganador" />
-          <AssociationSet Name="FK__Ganador__SorteoI__54F67D98" Association="SorteosDbDevModel.FK__Ganador__SorteoI__54F67D98">
-            <End Role="Sorteo" EntitySet="Sorteo" />
-            <End Role="Ganador" EntitySet="Ganador" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Ganador__Usuario__5402595F" Association="SorteosDbDevModel.FK__Ganador__Usuario__5402595F">
+          <AssociationSet Name="FK__Compra__UsuarioI__3FFB60B2" Association="SorteosDbDevModel.FK__Compra__UsuarioI__3FFB60B2">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Ganador" EntitySet="Ganador" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <EntitySet Name="Sitio" EntityType="SorteosDbDevModel.Sitio" />
+          <AssociationSet Name="FK__Sorteo__SitioId__57D2EA43" Association="SorteosDbDevModel.FK__Sorteo__SitioId__57D2EA43">
+            <End Role="Sitio" EntitySet="Sitio" />
+            <End Role="Sorteo" EntitySet="Sorteo" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Ciudad">
@@ -470,14 +506,6 @@
           <NavigationProperty Name="Ciudad" Relationship="SorteosDbDevModel.FK__Ciudad__Provinci__74A4331B" FromRole="Provincia" ToRole="Ciudad" />
           <NavigationProperty Name="Compra" Relationship="SorteosDbDevModel.FK__Compra__Provinci__41E3A924" FromRole="Provincia" ToRole="Compra" />
         </EntityType>
-        <EntityType Name="Sitio">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="POP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TOS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="Id" />
@@ -497,8 +525,8 @@
           <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
           <Property Name="BloqueadoHasta" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Perfil" Relationship="SorteosDbDevModel.FK__Usuario__PerfilI__6A26A4A8" FromRole="Usuario" ToRole="Perfil" />
-          <NavigationProperty Name="Compra" Relationship="SorteosDbDevModel.FK__Compra__UsuarioI__3FFB60B2" FromRole="Usuario" ToRole="Compra" />
           <NavigationProperty Name="Ganador" Relationship="SorteosDbDevModel.FK__Ganador__Usuario__5402595F" FromRole="Usuario" ToRole="Ganador" />
+          <NavigationProperty Name="Compra" Relationship="SorteosDbDevModel.FK__Compra__UsuarioI__3FFB60B2" FromRole="Usuario" ToRole="Compra" />
         </EntityType>
         <Association Name="FK__Ciudad__Provinci__74A4331B">
           <End Type="SorteosDbDevModel.Provincia" Role="Provincia" Multiplicity="0..1" />
@@ -559,77 +587,6 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Sorteo" Relationship="SorteosDbDevModel.FK__Lote__SorteoId__3E131840" FromRole="Lote" ToRole="Sorteo" />
         </EntityType>
-        <EntityType Name="Compra">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Lote" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="Cantidad" Type="Int32" />
-          <Property Name="FacturaPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="ProvinciaId" Type="Int32" />
-          <Property Name="CiudadId" Type="Int32" />
-          <Property Name="MarcaId" Type="Int32" />
-          <Property Name="UsuarioId" Type="Int32" />
-          <Property Name="SorteoId" Type="Int32" />
-          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
-          <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ciudad" Relationship="SorteosDbDevModel.FK__Compra__CiudadId__42D7CD5D" FromRole="Compra" ToRole="Ciudad" />
-          <NavigationProperty Name="Marca" Relationship="SorteosDbDevModel.FK__Compra__MarcaId__40EF84EB" FromRole="Compra" ToRole="Marca" />
-          <NavigationProperty Name="Provincia" Relationship="SorteosDbDevModel.FK__Compra__Provinci__41E3A924" FromRole="Compra" ToRole="Provincia" />
-          <NavigationProperty Name="Usuario" Relationship="SorteosDbDevModel.FK__Compra__UsuarioI__3FFB60B2" FromRole="Compra" ToRole="Usuario" />
-          <NavigationProperty Name="Sorteo" Relationship="SorteosDbDevModel.FK__Compra__SorteoId__3F073C79" FromRole="Compra" ToRole="Sorteo" />
-        </EntityType>
-        <Association Name="FK__Compra__CiudadId__42D7CD5D">
-          <End Type="SorteosDbDevModel.Ciudad" Role="Ciudad" Multiplicity="0..1" />
-          <End Type="SorteosDbDevModel.Compra" Role="Compra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ciudad">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Compra">
-              <PropertyRef Name="CiudadId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Compra__MarcaId__40EF84EB">
-          <End Type="SorteosDbDevModel.Marca" Role="Marca" Multiplicity="0..1" />
-          <End Type="SorteosDbDevModel.Compra" Role="Compra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Marca">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Compra">
-              <PropertyRef Name="MarcaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Compra__Provinci__41E3A924">
-          <End Type="SorteosDbDevModel.Provincia" Role="Provincia" Multiplicity="0..1" />
-          <End Type="SorteosDbDevModel.Compra" Role="Compra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Provincia">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Compra">
-              <PropertyRef Name="ProvinciaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Compra__UsuarioI__3FFB60B2">
-          <End Type="SorteosDbDevModel.Usuario" Role="Usuario" Multiplicity="0..1" />
-          <End Type="SorteosDbDevModel.Compra" Role="Compra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Compra">
-              <PropertyRef Name="UsuarioId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Sorteo">
           <Key>
             <PropertyRef Name="Id" />
@@ -646,22 +603,12 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="NumeroGanadores" Type="Int32" />
           <Property Name="Finalizado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Compra" Relationship="SorteosDbDevModel.FK__Compra__SorteoId__3F073C79" FromRole="Sorteo" ToRole="Compra" />
           <NavigationProperty Name="Lote" Relationship="SorteosDbDevModel.FK__Lote__SorteoId__3E131840" FromRole="Sorteo" ToRole="Lote" />
           <NavigationProperty Name="Ganador" Relationship="SorteosDbDevModel.FK__Ganador__SorteoI__54F67D98" FromRole="Sorteo" ToRole="Ganador" />
+          <Property Name="SitioId" Type="Int32" />
+          <NavigationProperty Name="Compra" Relationship="SorteosDbDevModel.FK__Compra__SorteoId__3F073C79" FromRole="Sorteo" ToRole="Compra" />
+          <NavigationProperty Name="Sitio" Relationship="SorteosDbDevModel.FK__Sorteo__SitioId__57D2EA43" FromRole="Sorteo" ToRole="Sitio" />
         </EntityType>
-        <Association Name="FK__Compra__SorteoId__3F073C79">
-          <End Type="SorteosDbDevModel.Sorteo" Role="Sorteo" Multiplicity="0..1" />
-          <End Type="SorteosDbDevModel.Compra" Role="Compra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sorteo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Compra">
-              <PropertyRef Name="SorteoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Lote__SorteoId__3E131840">
           <End Type="SorteosDbDevModel.Sorteo" Role="Sorteo" Multiplicity="0..1" />
           <End Type="SorteosDbDevModel.Lote" Role="Lote" Multiplicity="*" />
@@ -706,6 +653,125 @@
             </Principal>
             <Dependent Role="Ganador">
               <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Compra">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lote" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="FacturaPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ProvinciaId" Type="Int32" />
+          <Property Name="CiudadId" Type="Int32" />
+          <Property Name="MarcaId" Type="Int32" />
+          <Property Name="UsuarioId" Type="Int32" />
+          <Property Name="SorteoId" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="TipoPublicidad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ciudad" Relationship="SorteosDbDevModel.FK__Compra__CiudadId__42D7CD5D" FromRole="Compra" ToRole="Ciudad" />
+          <NavigationProperty Name="Marca" Relationship="SorteosDbDevModel.FK__Compra__MarcaId__40EF84EB" FromRole="Compra" ToRole="Marca" />
+          <NavigationProperty Name="Provincia" Relationship="SorteosDbDevModel.FK__Compra__Provinci__41E3A924" FromRole="Compra" ToRole="Provincia" />
+          <NavigationProperty Name="Sorteo" Relationship="SorteosDbDevModel.FK__Compra__SorteoId__3F073C79" FromRole="Compra" ToRole="Sorteo" />
+          <NavigationProperty Name="Usuario" Relationship="SorteosDbDevModel.FK__Compra__UsuarioI__3FFB60B2" FromRole="Compra" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__Compra__CiudadId__42D7CD5D">
+          <End Type="SorteosDbDevModel.Ciudad" Role="Ciudad" Multiplicity="0..1" />
+          <End Type="SorteosDbDevModel.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="CiudadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__MarcaId__40EF84EB">
+          <End Type="SorteosDbDevModel.Marca" Role="Marca" Multiplicity="0..1" />
+          <End Type="SorteosDbDevModel.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="MarcaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__Provinci__41E3A924">
+          <End Type="SorteosDbDevModel.Provincia" Role="Provincia" Multiplicity="0..1" />
+          <End Type="SorteosDbDevModel.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="ProvinciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__SorteoId__3F073C79">
+          <End Type="SorteosDbDevModel.Sorteo" Role="Sorteo" Multiplicity="0..1" />
+          <End Type="SorteosDbDevModel.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sorteo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="SorteoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compra__UsuarioI__3FFB60B2">
+          <End Type="SorteosDbDevModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+          <End Type="SorteosDbDevModel.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Sitio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="POP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TOS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAccount" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="BaseUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PageTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FacebookClientId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FacebookSecretKey" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FacebookRedirectUri" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SendGridApiKey" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FacebookLink" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="InstagramLink" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="WhatsappLink" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MasterSite" Type="Boolean" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Sorteo" Relationship="SorteosDbDevModel.FK__Sorteo__SitioId__57D2EA43" FromRole="Sitio" ToRole="Sorteo" />
+        </EntityType>
+        <Association Name="FK__Sorteo__SitioId__57D2EA43">
+          <End Type="SorteosDbDevModel.Sitio" Role="Sitio" Multiplicity="0..1" />
+          <End Type="SorteosDbDevModel.Sorteo" Role="Sorteo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sitio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sorteo">
+              <PropertyRef Name="SitioId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -771,15 +837,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sitio">
-            <EntityTypeMapping TypeName="SorteosDbDevModel.Sitio">
-              <MappingFragment StoreEntitySet="Sitio">
-                <ScalarProperty Name="TOS" ColumnName="TOS" />
-                <ScalarProperty Name="POP" ColumnName="POP" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="SorteosDbDevModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
@@ -811,28 +868,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Compra">
-            <EntityTypeMapping TypeName="SorteosDbDevModel.Compra">
-              <MappingFragment StoreEntitySet="Compra">
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="SorteoId" ColumnName="SorteoId" />
-                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
-                <ScalarProperty Name="MarcaId" ColumnName="MarcaId" />
-                <ScalarProperty Name="CiudadId" ColumnName="CiudadId" />
-                <ScalarProperty Name="ProvinciaId" ColumnName="ProvinciaId" />
-                <ScalarProperty Name="FacturaPath" ColumnName="FacturaPath" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="Lote" ColumnName="Lote" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Sorteo">
             <EntityTypeMapping TypeName="SorteosDbDevModel.Sorteo">
               <MappingFragment StoreEntitySet="Sorteo">
+                <ScalarProperty Name="SitioId" ColumnName="SitioId" />
                 <ScalarProperty Name="Finalizado" ColumnName="Finalizado" />
                 <ScalarProperty Name="NumeroGanadores" ColumnName="NumeroGanadores" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
@@ -854,6 +893,49 @@
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="SorteoId" ColumnName="SorteoId" />
                 <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compra">
+            <EntityTypeMapping TypeName="SorteosDbDevModel.Compra">
+              <MappingFragment StoreEntitySet="Compra">
+                <ScalarProperty Name="TipoPublicidad" ColumnName="TipoPublicidad" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="SorteoId" ColumnName="SorteoId" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="MarcaId" ColumnName="MarcaId" />
+                <ScalarProperty Name="CiudadId" ColumnName="CiudadId" />
+                <ScalarProperty Name="ProvinciaId" ColumnName="ProvinciaId" />
+                <ScalarProperty Name="FacturaPath" ColumnName="FacturaPath" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Lote" ColumnName="Lote" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sitio">
+            <EntityTypeMapping TypeName="SorteosDbDevModel.Sitio">
+              <MappingFragment StoreEntitySet="Sitio">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="MasterSite" ColumnName="MasterSite" />
+                <ScalarProperty Name="WhatsappLink" ColumnName="WhatsappLink" />
+                <ScalarProperty Name="InstagramLink" ColumnName="InstagramLink" />
+                <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
+                <ScalarProperty Name="SendGridApiKey" ColumnName="SendGridApiKey" />
+                <ScalarProperty Name="FacebookRedirectUri" ColumnName="FacebookRedirectUri" />
+                <ScalarProperty Name="FacebookSecretKey" ColumnName="FacebookSecretKey" />
+                <ScalarProperty Name="FacebookClientId" ColumnName="FacebookClientId" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+                <ScalarProperty Name="BaseUrl" ColumnName="BaseUrl" />
+                <ScalarProperty Name="EmailAccount" ColumnName="EmailAccount" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="TOS" ColumnName="TOS" />
+                <ScalarProperty Name="POP" ColumnName="POP" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
+using Sorteos.Services;
+using System;
+using System.IO;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
 
 namespace Sorteos.Web
 {
@@ -16,6 +15,15 @@ namespace Sorteos.Web
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //load app settings
+            AppSingleton.Init(LoadSettings());
+        }
+
+        private AppSettings LoadSettings()
+        {
+            var configFileString = File.ReadAllText(Server.MapPath("~/config.json"));
+            return JsonConvert.DeserializeObject<AppSettings>(configFileString);
         }
     }
 }

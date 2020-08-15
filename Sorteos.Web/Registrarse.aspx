@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Regreso a Clases Milky - Registrarse" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Registrarse.aspx.cs" Inherits="Sorteos.Web.Registrarse" Async="true" %>
+﻿<%@ Page Title="Registrarse" MetaKeywords="sorteo,concurso,regalo,premio,milky,oriental" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Registrarse.aspx.cs" Inherits="Sorteos.Web.Registrarse" Async="true" %>
 
 
 <asp:Content ID="registrarseHead" ContentPlaceHolderID="head" runat="server">

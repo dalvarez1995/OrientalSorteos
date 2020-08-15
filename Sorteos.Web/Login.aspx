@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login - Regreso a Clases Milky" MetaDescription="Inicia Sesión o registrate para empezar a participar" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Sorteos.Web.Login" %>
+﻿<%@ Page Title="Login" MetaDescription="Inicia Sesión o registrate para empezar a participar" MetaKeywords="sorteo,concurso,regalo,premio,milky,oriental" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Sorteos.Web.Login" %>
 
 
 <asp:Content ID="loginHead" ContentPlaceHolderID="head" runat="server">

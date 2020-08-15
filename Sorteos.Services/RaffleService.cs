@@ -56,7 +56,7 @@ namespace Sorteos.Services
                 if (modifiedRaffle.EndDate <= modifiedRaffle.BeginDate)
                     throw new Exception("Fecha de Finalización del sorteo no debe ser menor o igual a la Fecha de Inicio");
 
-                var dbRaffleList = context.Sorteo.ToList();
+                var dbRaffleList = context.Sorteo.Where( s => s.SitioId == AppSingleton.Instance.Sitio.Id).ToList();
 
                 if (modifiedRaffle.Active)
                 {
@@ -66,7 +66,7 @@ namespace Sorteos.Services
                     });
                 }
 
-                var dbRaffle = dbRaffleList.Where(s => s.Id == modifiedRaffle.Id).FirstOrDefault();
+                var dbRaffle = context.Sorteo.Where(s => s.Id == modifiedRaffle.Id).FirstOrDefault();
 
                 if (dbRaffle == null)
                     throw new Exception("El sorteo a modificar no existe.");
@@ -75,6 +75,7 @@ namespace Sorteos.Services
                 dbRaffle.FechaInicio = modifiedRaffle.BeginDate;
                 dbRaffle.FechaFin = modifiedRaffle.EndDate;
                 dbRaffle.HtmlCode = modifiedRaffle.HtmlCode;
+                dbRaffle.SitioId = modifiedRaffle.SiteId;
                 dbRaffle.Activo = modifiedRaffle.Active;
                 dbRaffle.FechaModificacion = DateTime.UtcNow.AddHours(-5);
 
@@ -103,6 +104,7 @@ namespace Sorteos.Services
                 return (from sort in context.Sorteo
                         where
                             sort.Activo == true &&
+                            sort.SitioId == AppSingleton.Instance.Sitio.Id &&
                             DateTime.Compare(sort.FechaInicio, currentDateTime) <= 0 &&
                             DateTime.Compare(sort.FechaFin, currentDateTime) >= 0
                         select sort
@@ -176,6 +178,23 @@ namespace Sorteos.Services
                         ChancesNumber = p.Purchases
                     }
                 ).ToList();
+            }
+        }
+
+        public string GetRaffleMediaPath(string file,string directory, int raffleId)
+        {
+            using (var context = new SorteosDbEntities())
+            {
+                var raffle = context.Sorteo.FirstOrDefault(s => s.Id == raffleId);
+                var relativePath = $"/Content/images/{raffle.Descripcion.Replace(" ", "").ToLower()}/{directory}/{file}";
+                if (raffle.SitioId.HasValue && raffle.Sitio.Activo)
+                {
+                    return relativePath;
+                }
+                var masterSite = context.Sitio.FirstOrDefault(s => s.MasterSite == true);
+                if (masterSite == null)
+                    throw new Exception("No se ha establecido un master site.");
+                return masterSite.BaseUrl + relativePath;
             }
         }
 

@@ -31,11 +31,11 @@ namespace Sorteos.Data
         public virtual DbSet<PerfilPermiso> PerfilPermiso { get; set; }
         public virtual DbSet<Permiso> Permiso { get; set; }
         public virtual DbSet<Provincia> Provincia { get; set; }
-        public virtual DbSet<Sitio> Sitio { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Lote> Lote { get; set; }
-        public virtual DbSet<Compra> Compra { get; set; }
         public virtual DbSet<Sorteo> Sorteo { get; set; }
         public virtual DbSet<Ganador> Ganador { get; set; }
+        public virtual DbSet<Compra> Compra { get; set; }
+        public virtual DbSet<Sitio> Sitio { get; set; }
     }
 }

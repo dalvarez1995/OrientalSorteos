@@ -18,7 +18,7 @@ namespace Sorteos.Services
             var payload = new string[][] { new string[] { "userId", email } };
             var subject = "Activa tu cuenta";
             var templateId = "d-49a7742952c246a0be740c82443e701f";
-            var company = Settings.Default.Company;
+            var company = AppSingleton.Instance.Sitio.Company;
             var dynamicTemplateData = $@"
       	            'destination' : '{email}',
 	                'company_name': '{company}',
@@ -32,14 +32,14 @@ namespace Sorteos.Services
         private static async Task<Response> Send(string to,string subject, string templateId, string dynamicTemplateData)
         {
 
-            var apiKey = Settings.Default.SendGridApiKey;
+            var apiKey = AppSingleton.Instance.Sitio.SendGridApiKey;
             var client = new SendGridClient(apiKey);
-            var company = Settings.Default.Company;
-            var emailAccount = Settings.Default.EmailAccount;
-            var facebook = Settings.Default.FacebookLink;
-            var instagram = Settings.Default.InstagramLink;
-            var whatsapp = Settings.Default.WhatsappLink;
-            var logo = Settings.Default.LogoSrc;
+            var company = AppSingleton.Instance.Sitio.Company;
+            var emailAccount = AppSingleton.Instance.Sitio.EmailAccount;
+            var facebook = AppSingleton.Instance.Sitio.FacebookLink;
+            var instagram = AppSingleton.Instance.Sitio.InstagramLink;
+            var whatsapp = AppSingleton.Instance.Sitio.WhatsappLink;
+            var logo = AppSingleton.Instance.Sitio.LogoSrc;
 
             var body = $@"{{
                 'subject': '{subject}',
@@ -74,12 +74,12 @@ namespace Sorteos.Services
 
         public static async Task sendWelcomeEmail(string email,string nombreCompleto)
         {
-            var loginUrl = $"{Settings.Default.BaseUrl}/Login";
+            var loginUrl = $"{AppSingleton.Instance.Sitio.BaseUrl}/Login";
             var templateId = "d-dc029ea4bec34cb1b740adb7267ecb49";
             var subject = "Bienvenido";
 
             var dynamicTemplateData = $@"
-                    'page_name': 'Regreso a Clases Milky',
+                    'page_name': 'Sorteos Oriental',
       	            'login_url' : '{loginUrl}',
 	                'full_name': '{nombreCompleto}'
             ";
@@ -93,9 +93,9 @@ namespace Sorteos.Services
             var payload = new string[][] { new string[] { "userId", email } };
             var token = SecurityUtil.GenerateJwtToken(payload,30);
             var subject = "Cambio de Contraseña";
-            var activationUrl = $"{Settings.Default.BaseUrl}/Cambio-Password?pid={token}";
+            var activationUrl = $"{AppSingleton.Instance.Sitio.BaseUrl}/Cambio-Password?pid={token}";
             var templateId = "d-ca31fbb3e157433b96ae2c0d962d564e";
-            var company = Settings.Default.Company;
+            var company = AppSingleton.Instance.Sitio.Company;
             var dynamicTemplateData = $@"
                     'name': '{name}'
 	                'company_name': '{company}',

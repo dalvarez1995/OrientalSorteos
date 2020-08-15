@@ -11,6 +11,13 @@ namespace Sorteos.Web.Cliente
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = $"Participar - {AppSingleton.Instance.Sitio.PageTitle}";
+            if (!WebContext.AnyRaffleActive())
+            {
+                Response.Redirect("/Cliente/Resumen",true);
+                return;
+            }
+
             try
             {
                 if (!Page.IsPostBack) {
@@ -46,12 +53,17 @@ namespace Sorteos.Web.Cliente
                 if (Page.IsPostBack)
                 {
                     PurchaseService purchaseService = new PurchaseService();
+                    RaffleService raffleService = new RaffleService();
                     var currentUser = WebContext.GetCurrentUser();
                     Regex extensionReg = new Regex(@"\.(png|jpg|jpeg)", RegexOptions.IgnoreCase);
 
+                    var currentRaffle = raffleService.findCurrentRaffle();
+                    if (currentRaffle == null)
+                        throw new Exception("No exiten sorteos activos. Inténtelo más tarde");
+
 
                     var postedfile = fuFoto.PostedFile;
-                    var imagesPath = Server.MapPath("~/Content/images/invoices/");
+                    var imagesPath = Server.MapPath($"~/Content/images/{currentRaffle.Description.Replace(" ","").ToLower()}/invoices/");
 
                     if (!Directory.Exists(imagesPath))
                         Directory.CreateDirectory(imagesPath);
@@ -66,11 +78,13 @@ namespace Sorteos.Web.Cliente
                     var ciudadId = Request.Form["ciudadId"];
                     purchaseService.Insert(
                         txtNumeroLote.Text,
+                        radioDigital.Checked ? "Digital" : "Impresa",
                         radioSupermercado.Checked ? "Supermercado": "Tienda",
                         Int32.Parse(txtCantidad.Text),
                         Int32.Parse(ciudadId),
                         Int32.Parse(cboMarcas.SelectedValue),
                         Int32.Parse(cboProvincias.SelectedValue),
+                        currentRaffle.Id,
                         currentUser.Id,
                         fileName
                     );

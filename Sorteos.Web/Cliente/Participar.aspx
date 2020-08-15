@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Sorteos Oriental - Participar" Language="C#" MasterPageFile="~/Public.Master" AutoEventWireup="true" CodeBehind="Participar.aspx.cs" Inherits="Sorteos.Web.Cliente.Participar" %>
+﻿<%@ Page Title="Participar" Language="C#" MasterPageFile="~/Public.Master" AutoEventWireup="true" CodeBehind="Participar.aspx.cs" Inherits="Sorteos.Web.Cliente.Participar" %>
 
 <asp:Content ID="resumenHead" ContentPlaceHolderID="logo" runat="server">
 </asp:Content>
@@ -12,6 +12,33 @@
     </div>
     <div class="row">
         <div id="registrar-compra">
+            <h4>Publicidad</h4>
+            <section id="tipoPublicidad">
+                <div class="row">
+                    <h3>Por que medio te enteraste de nuestro sorteo?</h3>
+                </div>
+                <div class="row" style="height: 350px; display: grid; grid-template-rows: repeat(2,1fr); grid-template-columns: auto;">
+                    <div style="display: flex; align-items: center; grid-row: 1/2; cursor: pointer; border-radius: 15px;" onmouseover="this.style.backgroundColor = '#bbfbf5'" onmouseout="this.style.backgroundColor = 'transparent'" onclick="checkRadioButton(this,event)">
+                        <div class="row">
+                            <i class="fas fa-home fa-4x" style="color: #0094ff;"></i>
+                            <label>
+                                <input id="radioDigital" runat="server" name="publicidad" type="radio"  value="tienda" />
+                                <span>Publicidad Digital (Redes sociales, sitios web,etc.)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; grid-row: 2/2; cursor: pointer; border-radius: 15px;" onmouseover="this.style.backgroundColor = '#bbfbf5'" onmouseout="this.style.backgroundColor = 'transparent'" onclick="checkRadioButton(this,event)">
+                        <div class="row">
+                            <i class="fas fa-industry fa-4x" style="color: #0094ff;"></i>
+                            <label>
+                                <input id="radioImpresa" runat="server" name="publicidad" type="radio" value="super" />
+                                <span>Publicidad Impresa (Tiendas,Supermercados, Prensa, etc.)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <span id="error-publicidad" style="display: none" class="error-message">Seleccione una opción</span>
+                </div>
+            </section>
             <h4>Negocio</h4>
             <section id="tipoNegocio">
                 <div class="row">
@@ -22,7 +49,7 @@
                         <div class="row">
                             <i class="fas fa-home fa-4x" style="color: #0094ff;"></i>
                             <label>
-                                <input id="radioTienda" runat="server" name="tipoNegocio" type="radio" checked value="tienda" />
+                                <input id="radioTienda" runat="server" name="tipoNegocio" type="radio" value="tienda" />
                                 <span>Tienda</span>
                             </label>
                         </div>
@@ -36,6 +63,7 @@
                             </label>
                         </div>
                     </div>
+                    <span id="error-tipocompra" style="display: none" class="error-message">Seleccione una opción</span>
                 </div>
             </section>
             <h4>Ubicación</h4>
@@ -133,6 +161,33 @@
         });
 
 
+        function validatePublicidad() {
+            if ($('#registrar-compra-p-0 input[type="radio"]:checked').length == 0) {
+                $('#error-publicidad').show();
+                return false;
+            }
+            return true;
+            return true;
+        }
+
+        function validateTipoCompra() {
+            if ($('#registrar-compra-p-1 input[type="radio"]:checked').length == 0) {
+                $('#error-tipocompra').show();
+                return false;
+            }
+            return true;
+        }
+
+        function validateProvincias() {
+            let selectedState = $('#cboProvincias');
+            if (selectedState.val() <= 0) {
+                $('#error-provincias').show();
+                return false;
+            }
+            return true;
+        }
+
+
         function validateProvincias() {
             let selectedState = $('#cboProvincias');
             if (selectedState.val() <= 0) {
@@ -210,15 +265,24 @@
                     if (currentIndex > newIndex) {
                         return true;
                     }
+                    let valid = false;
                     switch (currentIndex) {
                         case 0:
-                            if ($('input[type="radio"]:checked').val() == "super")
-                                $('#fotografiaInfo').text('de la factura');
-                            else
-                                $('#fotografiaInfo').text('del producto');
-                            return true;
+                            valid = validatePublicidad();
+                            return valid;
                             break;
                         case 1:
+                            valid = validateTipoCompra();
+
+                            if (valid) {
+                                if ($('#registrar-compra-p-1 input[type="radio"]:checked').val() == "super")
+                                    $('#fotografiaInfo').text('de la factura');
+                                else
+                                    $('#fotografiaInfo').text('del producto');
+                            }
+                            return valid;
+                            break;
+                        case 2:
 
                             valid = true;
 
@@ -285,7 +349,6 @@
                         ajaxPOST('/Service.asmx/ValidateLote', {
                             lote: $('#txtNumeroLote').val()
                         }, (result ) => {
-                                console.log(result);
                             if (!result) {
                                 error('El número de lote proporcionado no es válido o no aplica para este sorteo');
                                 return;

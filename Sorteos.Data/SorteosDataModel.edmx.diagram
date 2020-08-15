@@ -11,24 +11,25 @@
         <EntityTypeShape EntityType="SorteosDbDevModel.PerfilPermiso" Width="1.5" PointX="6" PointY="9.125" />
         <EntityTypeShape EntityType="SorteosDbDevModel.Permiso" Width="1.5" PointX="3.75" PointY="19.75" />
         <EntityTypeShape EntityType="SorteosDbDevModel.Provincia" Width="1.5" PointX="0.75" PointY="2.125" />
-        <EntityTypeShape EntityType="SorteosDbDevModel.Sitio" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="SorteosDbDevModel.Usuario" Width="1.5" PointX="3" PointY="7.875" />
         <AssociationConnector Association="SorteosDbDevModel.FK__Ciudad__Provinci__74A4331B" />
         <AssociationConnector Association="SorteosDbDevModel.FK__PerfilPer__Perfi__6C0EED1A" />
         <AssociationConnector Association="SorteosDbDevModel.FK__Usuario__PerfilI__6A26A4A8" />
         <AssociationConnector Association="SorteosDbDevModel.FK__PerfilPer__Perfi__6D031153" />
         <EntityTypeShape EntityType="SorteosDbDevModel.Lote" Width="1.5" PointX="0.5" PointY="13.875" />
-        <EntityTypeShape EntityType="SorteosDbDevModel.Compra" Width="1.5" PointX="8.25" PointY="8.125" />
-        <AssociationConnector Association="SorteosDbDevModel.FK__Compra__CiudadId__42D7CD5D" />
-        <AssociationConnector Association="SorteosDbDevModel.FK__Compra__MarcaId__40EF84EB" />
-        <AssociationConnector Association="SorteosDbDevModel.FK__Compra__Provinci__41E3A924" />
-        <AssociationConnector Association="SorteosDbDevModel.FK__Compra__UsuarioI__3FFB60B2" />
         <EntityTypeShape EntityType="SorteosDbDevModel.Sorteo" Width="1.5" PointX="3.875" PointY="14.875" />
-        <AssociationConnector Association="SorteosDbDevModel.FK__Compra__SorteoId__3F073C79" />
         <AssociationConnector Association="SorteosDbDevModel.FK__Lote__SorteoId__3E131840" />
         <EntityTypeShape EntityType="SorteosDbDevModel.Ganador" Width="1.5" PointX="6.125" PointY="13.375" />
         <AssociationConnector Association="SorteosDbDevModel.FK__Ganador__SorteoI__54F67D98" />
         <AssociationConnector Association="SorteosDbDevModel.FK__Ganador__Usuario__5402595F" />
+        <EntityTypeShape EntityType="SorteosDbDevModel.Compra" Width="1.5" PointX="9.125" PointY="7.25" />
+        <AssociationConnector Association="SorteosDbDevModel.FK__Compra__CiudadId__42D7CD5D" />
+        <AssociationConnector Association="SorteosDbDevModel.FK__Compra__MarcaId__40EF84EB" />
+        <AssociationConnector Association="SorteosDbDevModel.FK__Compra__Provinci__41E3A924" />
+        <AssociationConnector Association="SorteosDbDevModel.FK__Compra__SorteoId__3F073C79" />
+        <AssociationConnector Association="SorteosDbDevModel.FK__Compra__UsuarioI__3FFB60B2" />
+        <EntityTypeShape EntityType="SorteosDbDevModel.Sitio" Width="1.5" PointX="1.625" PointY="23.75" />
+        <AssociationConnector Association="SorteosDbDevModel.FK__Sorteo__SitioId__57D2EA43" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

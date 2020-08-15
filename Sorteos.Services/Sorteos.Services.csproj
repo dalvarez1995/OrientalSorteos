@@ -75,6 +75,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="AppSingleton.cs" />
     <Compile Include="AuthService.cs" />
     <Compile Include="BrandService.cs" />
     <Compile Include="ChartService.cs" />

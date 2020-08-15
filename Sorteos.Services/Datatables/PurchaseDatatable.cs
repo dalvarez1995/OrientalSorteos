@@ -81,6 +81,7 @@ namespace Sorteos.Services.Datatables
         public dynamic BuildData(IList<Compra> source)
         {
             List<CompraDtModel> listaCompras = new List<CompraDtModel>();
+            RaffleService raffleService = new RaffleService();
             foreach (var item in source)
             {
                 var compra = new CompraDtModel();
@@ -93,7 +94,7 @@ namespace Sorteos.Services.Datatables
                 compra.Cantidad = item.Cantidad.HasValue ? item.Cantidad.Value : 0;
                 compra.Provincia = item.Provincia.Nombre;
                 compra.Ciudad = item.Ciudad.Nombre;
-                compra.FacturaPath = item.FacturaPath;
+                compra.FacturaPath = raffleService.GetRaffleMediaPath(item.FacturaPath,"invoices",item.SorteoId.Value);
                 compra.FechaCreacion = item.FechaCreacion;
                 compra.Estado = Enum.GetName(typeof(PurchaseStatus), Enum.Parse(typeof(PurchaseStatus),item.Estado.ToString(),true));
                 listaCompras.Add(compra);
