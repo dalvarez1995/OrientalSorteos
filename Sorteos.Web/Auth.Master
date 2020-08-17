@@ -5,15 +5,23 @@
 <html>
 <head runat="server">
     <title></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1"  />
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1" />
 
     <webopt:BundleReference runat="server" Path="~/Content/css/login" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico"/>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <% if (!string.IsNullOrEmpty(Sorteos.Services.AppSingleton.Instance.PatternSrc))
+        { %>
+    <style>
+        .contenedor {
+            background-image: url('/Content/images/<%: Sorteos.Services.AppSingleton.Instance.PatternSrc %>');
+            background-repeat: no-repeat;
+        }
+    </style>
+    <%}%>
 </head>
 <body>
     <div class="contenedor">
@@ -23,7 +31,7 @@
                     <div class="row">
                         <asp:ContentPlaceHolder ID="logo" runat="server">
                             <div class="logo">
-                                <img id="mainImage" runat="server" src="/Content/images/regreso-clases.jpeg" class="logo" />
+                                <img id="mainLogo" runat="server" class="logo" />
                             </div>
                         </asp:ContentPlaceHolder>
                     </div>
@@ -33,25 +41,25 @@
                     </div>
                     <div class="row">
                         <h6 class="o-label"><span>Sitio</span></h6>
-                        <a href="/Login" >Inicio</a>
+                        <a href="/Login">Inicio</a>
                         <br />
-                        <a href="/Condiciones-Uso" >Condiciones de Uso</a>
+                        <a href="/Condiciones-Uso">Condiciones de Uso</a>
                         <br />
-                        <a href="/Politica-Privacidad" >Políticas de privacidad</a>
+                        <a href="/Politica-Privacidad">Políticas de privacidad</a>
                     </div>
                     <div class="row">
-                            <b>Copyright &copy; 
-                            </b>
-                            <span id="currentYear"></span>
-                            Grupo Oriental 
+                        <b>Copyright &copy; 
+                        </b>
+                        <span id="currentYear"></span>
+                        Grupo Oriental 
                             
                             <script>
                                 (function () {
-                                    const yearLabel = document.getElementById('currentYear');
-                                    yearLabel.innerText = new Date().getUTCFullYear();
-                                })();
-                            </script>
-                        </div>
+                       const yearLabel = document.getElementById('currentYear');
+                       yearLabel.innerText = new Date().getUTCFullYear();
+                   })();
+                            </script >
+                    </div>
                 </div>
                 <%: Scripts.Render("~/bundles/login") %>
             </form>

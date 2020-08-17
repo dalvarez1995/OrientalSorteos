@@ -20,7 +20,7 @@ namespace Sorteos.Services
                 if (newRaffle.EndDate <= newRaffle.BeginDate)
                     throw new Exception("Fecha de Finalización del sorteo no debe ser menor o igual a la Fecha de Inicio");
 
-                var dbRaffleList = context.Sorteo.ToList();
+                var dbRaffleList = context.Sorteo.Where(s => s.SitioId == AppSingleton.Instance.Sitio.Id).ToList();
 
                 if (newRaffle.Active)
                 {
@@ -31,13 +31,13 @@ namespace Sorteos.Services
                 };
 
 
-
                 context.Sorteo.Add(new Sorteo {
                     Descripcion = newRaffle.Description,
                     HtmlCode = newRaffle.HtmlCode,
                     FechaInicio = newRaffle.BeginDate,
                     FechaFin = newRaffle.EndDate,
                     Activo = newRaffle.Active,
+                    SitioId = newRaffle.SiteId,
                     Finalizado = false,
                     FechaCreacion = DateTime.UtcNow.AddHours(-5)
                 });
@@ -187,9 +187,17 @@ namespace Sorteos.Services
             {
                 var raffle = context.Sorteo.FirstOrDefault(s => s.Id == raffleId);
                 var relativePath = $"/Content/images/{raffle.Descripcion.Replace(" ", "").ToLower()}/{directory}/{file}";
-                if (raffle.SitioId.HasValue && raffle.Sitio.Activo)
+                if (raffle.SitioId.HasValue)
                 {
-                    return relativePath;
+                    var siteService = new SiteService();
+                    var site = siteService.GetSiteById(raffle.SitioId.Value);
+                    if (raffle.Sitio.Activo) {
+                        if (raffle.SitioId == AppSingleton.Instance.Sitio.Id)
+                            return relativePath;
+                        else
+                            return site.BaseUrl + relativePath;
+
+                    }
                 }
                 var masterSite = context.Sitio.FirstOrDefault(s => s.MasterSite == true);
                 if (masterSite == null)

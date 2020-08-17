@@ -68,41 +68,62 @@ namespace Sorteos.Web
             }); ;
         }
 
+        #region Charts
         [WebMethod(EnableSession = true)]
-        public string GetCustomerChartData()
+        public string GetCustomerChartData(int raffleId)
         {
             WebContext.ValidateAdminArea();
             ChartService chartService = new ChartService();
-            return chartService.GetCustomerChartData();
+            return chartService.GetCustomerChartData(raffleId: raffleId);
 
         }
 
         [WebMethod(EnableSession = true)]
-        public string GetPurchasesChartData()
+        public string GetPurchasesChartData(int raffleId)
         {
             WebContext.ValidateAdminArea();
             ChartService chartService = new ChartService();
-            return chartService.GetPurchasesChartData();
+            return chartService.GetPurchasesChartData(raffleId:raffleId);
 
         }
 
         [WebMethod(EnableSession = true)]
-        public string GetPurchasesByStateChartData()
+        public string GetPurchasesByStateChartData(int raffleId)
         {
             WebContext.ValidateAdminArea();
             ChartService chartService = new ChartService();
-            return chartService.GetPurchasesByStateChartData();
+            return chartService.GetPurchasesByStateChartData(raffleId:raffleId);
 
         }
 
         [WebMethod(EnableSession = true)]
-        public string GetPurchasesByTypeChartData()
+        public string GetPurchasesByTypeChartData(int raffleId)
         {
             WebContext.ValidateAdminArea();
             ChartService chartService = new ChartService();
-            return chartService.GetPurchasesByTypeChartData();
+            return chartService.GetPurchasesByTypeChartData(raffleId:raffleId);
 
         }
+
+        [WebMethod(EnableSession = true)]
+        public string GetPurchasesByBrandChartData(int raffleId)
+        {
+            WebContext.ValidateAdminArea();
+            ChartService chartService = new ChartService();
+            return chartService.GetPurchasesByBrandChartData(raffleId: raffleId);
+
+        }
+
+        [WebMethod(EnableSession = true)]
+        public string GetPurchasesByPublicityChartData(int raffleId)
+        {
+            WebContext.ValidateAdminArea();
+            ChartService chartService = new ChartService();
+            return chartService.GetPurchasesByPublicityChartData(raffleId: raffleId);
+
+        }
+        #endregion
+
 
         [WebMethod(EnableSession = true)]
         public string ValidateLote(string lote)

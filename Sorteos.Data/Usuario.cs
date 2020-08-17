@@ -17,8 +17,8 @@ namespace Sorteos.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            this.Ganador = new HashSet<Ganador>();
             this.Compra = new HashSet<Compra>();
+            this.Ganador = new HashSet<Ganador>();
         }
     
         public int Id { get; set; }
@@ -35,11 +35,13 @@ namespace Sorteos.Data
         public System.DateTime FechaCreacion { get; set; }
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public Nullable<System.DateTime> BloqueadoHasta { get; set; }
+        public Nullable<int> SorteoId { get; set; }
     
-        public virtual Perfil Perfil { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ganador> Ganador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Compra> Compra { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ganador> Ganador { get; set; }
+        public virtual Perfil Perfil { get; set; }
+        public virtual Sorteo Sorteo { get; set; }
     }
 }

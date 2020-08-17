@@ -7,6 +7,11 @@ namespace Sorteos.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(Services.AppSingleton.Instance.LogoSrc))
+                userImage.Src = Services.AppSingleton.Instance.LogoSrc;
+            else
+                userImage.Src = "/Content/images/oriental-logo.png";
+
             if (Session["ShowAlert"] != null)
             {
                 var alert = Session["ShowAlert"].ToString();

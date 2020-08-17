@@ -20,6 +20,7 @@ namespace Sorteos.Data
             this.Lote = new HashSet<Lote>();
             this.Ganador = new HashSet<Ganador>();
             this.Compra = new HashSet<Compra>();
+            this.Usuario = new HashSet<Usuario>();
         }
     
         public int Id { get; set; }
@@ -43,5 +44,7 @@ namespace Sorteos.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Compra> Compra { get; set; }
         public virtual Sitio Sitio { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

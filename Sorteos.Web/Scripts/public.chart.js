@@ -12,10 +12,40 @@ const dynamicColors = function () {
     let g = Math.floor(Math.random() * 255);
     let b = Math.floor(Math.random() * 255);
     return "rgb(" + r + "," + g + "," + b + ")";
+    
 }
 
-function crearLineChart(el, type, data, labels, title, dsTitle, random) {
-    const colorsArray = random ? poolColors(data.length) : "#d40416";
+function colors() {
+    return [
+        '#F44336',
+        '#E91E63',
+        '#9C27B0',
+        '#673AB7',
+        '#3F51B5',
+        '#2196F3',
+        '#03A9F4',
+        '#00BCD4',
+        '#009688',
+        '#4CAF50',
+        '#8BC34A',
+        '#CDDC39',
+        '#F9A825',
+        '#FFC107',
+        '#FF9800',
+        '#FF5722',
+        '#795548',
+        '#607D8B',
+        '#9E9E9E',
+        '#212121',
+        '#01579B',
+        '#1DE9B6',
+        '#00C853',
+        '#AEEA00'
+    ]
+}
+
+function createChart(el, type, data, labels, title, dsTitle, random) {
+    const colorsArray = random ? colors() : "#d40416";
     const chart = new Chart(el, {
         type: type,
         data: {
@@ -106,7 +136,8 @@ function crearLineChart(el, type, data, labels, title, dsTitle, random) {
                         return `${round((args.value * 100 / max), 2)}%`; //Calculate percent
                     },
                     textMargin: 4,
-                    fontSize: 10,
+                    fontSize: 9,
+                    fontColor: "#EEEEEE"
                 }
             }
         }

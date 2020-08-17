@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Depurar.aspx.cs" Inherits="Sorteos.Web.Administracion.Depurar" %>
+﻿<%@ Page Title="Depurar - Administración" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Depurar.aspx.cs" Inherits="Sorteos.Web.Administracion.Depurar" %>
 
 <asp:Content ID="depurarHeader" ContentPlaceHolderID="header" runat="server">
 </asp:Content>
@@ -65,7 +65,7 @@
                                     const da = new Intl.DateTimeFormat('es', { day: '2-digit' }).format(createdAt);
 
                                     $('#cardPurchase').data('Id', purchase.Id);
-                                    $('#imgCompra').attr('src', `/Content/images/invoices/${purchase.InvoicePath}`);
+                                    $('#imgCompra').attr('src', purchase.InvoicePath);
                                     $('#txtUsuario').text(purchase.User.FullName)
                                     $('#txtFecha').text(`${da} de ${mo} del ${ye}`);
                                     $('#txtLote').text(purchase.Lote);

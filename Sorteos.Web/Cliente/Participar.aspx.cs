@@ -95,6 +95,7 @@ namespace Sorteos.Web.Cliente
                 }
             }catch (Exception ex)
             {
+                cboProvincias.SelectedIndex = 0;
                 ClientScript.RegisterStartupScript(GetType(), "notification", $"error('{ex.Message.Replace("'", "\"")}');", true);
             }
         }

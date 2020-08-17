@@ -14,25 +14,23 @@
             <asp:TextBox ID="cellNumber" ClientIDMode="Static" runat="server" AutoCompleteType="Cellular" CssClass="validate" required="true" />
             <label for="cellNumber" >Whatsapp</label>
         </div>
-        <asp:RequiredFieldValidator ErrorMessage="Ingrese su número de whatsapp" CssClass="error-message" SetFocusOnError="true" ControlToValidate="cellNumber" runat="server" />
-        <br />
-        <asp:RegularExpressionValidator ErrorMessage="Whatsapp no válido (10 digitos permitidos)" CssClass="error-message" ValidationExpression="(^[0-9]{9,10}$)" ControlToValidate="cellNumber" runat="server" />
+        <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Ingrese su número de whatsapp" CssClass="error-message" SetFocusOnError="true" ControlToValidate="cellNumber" runat="server" />
+        <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Whatsapp no válido (10 digitos permitidos)" CssClass="error-message" ValidationExpression="(^[0-9]{9,10}$)" ControlToValidate="cellNumber" runat="server" />
     </div>
     <div class="row">
         <div class="input-field col s12">
             <input id="password" type="password" name="password" runat="server" autocomplete="on" minlength="4" class="validate" required="required" />
             <label for="password" >Contraseña</label>
         </div>
-        <asp:RequiredFieldValidator ErrorMessage="Ingrese la contraseña" CssClass="error-message" SetFocusOnError="true" ControlToValidate="password" runat="server" />
-        <br />
-        <asp:RegularExpressionValidator ErrorMessage="La contraseña debe tener mínimo 4 caractéres" CssClass="error-message" ValidationExpression="(^.{4,}$)" ControlToValidate="password" runat="server" />
+        <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Ingrese la contraseña" CssClass="error-message" SetFocusOnError="true" ControlToValidate="password" runat="server" />
+        <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="La contraseña debe tener mínimo 4 caractéres" CssClass="error-message" ValidationExpression="(^.{4,}$)" ControlToValidate="password" runat="server" />
     </div>
     <div class="row">
         <div class="input-field placeholded col s12">
             <input id="repeteatedPassword" name="repeated-password" type="password" runat="server" class="validate"  required="required" />
             <label for="repeteatedPassword" >Repetir Contraseña</label>
         </div>
-        <asp:CompareValidator ErrorMessage="Contraseñas no coinciden" CssClass="error-message" ControlToValidate="repeteatedPassword" ControlToCompare="password" Type="String" Operator="Equal" runat="server" />
+        <asp:CompareValidator Display="Dynamic" ErrorMessage="Contraseñas no coinciden" CssClass="error-message" ControlToValidate="repeteatedPassword" ControlToCompare="password" Type="String" Operator="Equal" runat="server" />
     </div>
     <div class="row">
         <p>

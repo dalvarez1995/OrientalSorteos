@@ -10,13 +10,14 @@ namespace Sorteos.Services
     public class ChartService
     {
 
-        public string GetCustomerChartData(int days = 7,int idRaffle = 0) {
+        public string GetCustomerChartData(int days = 7,int raffleId = 0) {
             using (var context = new SorteosDbEntities()) {
                 var initialDate = Util.CurrentDateTime().AddDays(-days + 1);
                 var formattedInitialDate = DateTime.Parse(new DateTime(initialDate.Year, initialDate.Month, 1).ToShortDateString().Trim() + " 00:00:00");
                 var months = (from users in context.Usuario
                               where
-                                users.FechaCreacion > initialDate
+                                users.FechaCreacion > initialDate &&
+                                users.SorteoId == (raffleId > 0 ? raffleId : users.SorteoId)
                               group users by new { day = users.FechaCreacion.Day, months = users.FechaCreacion.Month })
                               .AsEnumerable()
                               .Select(d => new { date = string.Format("{0}/{1}", d.Key.day, d.Key.months), count = d.Count() }).ToList();
@@ -41,7 +42,7 @@ namespace Sorteos.Services
             }
         }
 
-        public string GetPurchasesChartData(int days = 7, int idRaffle = 0)
+        public string GetPurchasesChartData(int days = 7, int raffleId = 0)
         {
             using (var context = new SorteosDbEntities())
             {
@@ -49,7 +50,8 @@ namespace Sorteos.Services
                 var formattedInitialDate = DateTime.Parse(new DateTime(initialDate.Year, initialDate.Month, 1).ToShortDateString().Trim() + " 00:00:00");
                 var months = (from purchs in context.Compra
                               where
-                                purchs.FechaCreacion > initialDate
+                                purchs.FechaCreacion > initialDate &&
+                                purchs.Sorteo.SitioId == (raffleId > 0 ? raffleId : purchs.Sorteo.SitioId)
                               group purchs by new { day = purchs.FechaCreacion.Day, months = purchs.FechaCreacion.Month })
                               .AsEnumerable()
                               .Select(d => new { date = string.Format("{0}/{1}", d.Key.day, d.Key.months), count = d.Count() }).ToList();
@@ -77,18 +79,20 @@ namespace Sorteos.Services
         }
 
 
-        public string GetPurchasesByStateChartData()
+        public string GetPurchasesByStateChartData(int raffleId = 0)
         {
             using (var context = new SorteosDbEntities())
             {
-                var statesPurchs = (from purch in context.Compra
-                                    group purch by new { state = purch.Provincia.Nombre})
+                var statesPurchs = (from purchs in context.Compra
+                                    where
+                                        purchs.Sorteo.SitioId == (raffleId > 0 ? raffleId : purchs.Sorteo.SitioId)
+                                    group purchs by new { state = purchs.Provincia.Nombre})
                               .AsEnumerable()
                               .Select(d => new { state = d.Key.state, count = d.Count() }).ToList();
 
                 var dataArray = new JArray();
 
-                StateService stateService = new StateService();
+                var stateService = new StateService();
                 var states = stateService.GetAllStates().OrderBy( s => s.Name).ToList();
 
                 foreach (var state in states)
@@ -110,12 +114,81 @@ namespace Sorteos.Services
             }
         }
 
-        public string GetPurchasesByTypeChartData()
+        public string GetPurchasesByPublicityChartData(int raffleId)
         {
             using (var context = new SorteosDbEntities())
             {
-                var typePurchs = (from purch in context.Compra
-                                    group purch by new { type = purch.Tipo })
+                var publicityPurchs = (from purchs in context.Compra
+                                   where
+                                         purchs.Sorteo.SitioId == (raffleId > 0 ? raffleId : purchs.Sorteo.SitioId)
+                                   group purchs by new { publicity = purchs.TipoPublicidad })
+                              .AsEnumerable()
+                              .Select(d => new { publicity = d.Key.publicity, count = d.Count() }).ToList();
+
+                var dataArray = new JArray();
+
+                var publicityTypes = new string[] { "Digital", "Impresa" };
+                foreach (var type in publicityTypes)
+                {
+                    var dataObject = new
+                    {
+                        type = type,
+                        value = publicityPurchs.Where(s => s.publicity == type).Select(s => s.count).FirstOrDefault()
+                    };
+
+                    dataArray.Add(JObject.FromObject(dataObject));
+                }
+
+                var result = new
+                {
+                    data = dataArray
+                };
+                return JsonConvert.SerializeObject(result);
+            }
+        }
+
+        public string GetPurchasesByBrandChartData(int raffleId)
+        {
+            using (var context = new SorteosDbEntities())
+            {
+                var brandPurchs = (from purchs in context.Compra
+                                  where
+                                        purchs.Sorteo.SitioId == (raffleId > 0 ? raffleId : purchs.Sorteo.SitioId)
+                                  group purchs by new { brand = purchs.Marca.Descripcion })
+                              .AsEnumerable()
+                              .Select(d => new { brand = d.Key.brand, count = d.Count() }).ToList();
+
+                var dataArray = new JArray();
+
+                var brandService = new BrandService();
+                var brands = brandService.GetAllBrands().OrderBy(s => s.Description).ToList();
+                foreach (var brand in brands)
+                {
+                    var dataObject = new
+                    {
+                        type = brand.Description,
+                        value = brandPurchs.Where(s => s.brand == brand.Description).Select(s => s.count).FirstOrDefault()
+                    };
+
+                    dataArray.Add(JObject.FromObject(dataObject));
+                }
+
+                var result = new
+                {
+                    data = dataArray
+                };
+                return JsonConvert.SerializeObject(result);
+            }
+        }
+
+        public string GetPurchasesByTypeChartData(int raffleId = 0)
+        {
+            using (var context = new SorteosDbEntities())
+            {
+                var typePurchs = (from purchs in context.Compra
+                                  where
+                                        purchs.Sorteo.SitioId == (raffleId > 0 ? raffleId : purchs.Sorteo.SitioId)
+                                  group purchs by new { type = purchs.Tipo })
                               .AsEnumerable()
                               .Select(d => new { type = d.Key.type, count = d.Count() }).ToList();
 

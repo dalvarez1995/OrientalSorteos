@@ -48,7 +48,7 @@ namespace Sorteos.Services
 
                 userFound.OtpCode = otp;
                 context.SaveChanges();
-                await EmailService.sendActivationAccountEmail(userFound.Email, otp);
+                await EmailService.sendActivationAccountEmail(userFound.Nombre,userFound.Email, otp);
             }
         }
 
@@ -118,15 +118,15 @@ namespace Sorteos.Services
         }
 
         public async Task Registrar(string firstName, string lastName,string email,string cellphone,string password,string otp = "", bool pendingActivation = true) {
-
-
+            var currentRaffle = new RaffleService().findCurrentRaffle();
             var newUser = new Usuario
             {
                 Nombre = firstName,
                 Apellido = lastName,
                 Email = email.ToLower(),
                 Telefono = cellphone,
-                PasswordHash = password
+                PasswordHash = password,
+                SorteoId = currentRaffle?.SiteId ?? null
             };
 
             newUser.PasswordHash = SecurityUtil.HashPassword(newUser.PasswordHash);
@@ -140,9 +140,9 @@ namespace Sorteos.Services
                 context.Usuario.Add(newUser);
                 context.SaveChanges();
                 if (pendingActivation)
-                    await EmailService.sendActivationAccountEmail(newUser.Email,otp);
+                    await EmailService.sendActivationAccountEmail(newUser.Nombre,newUser.Email,otp);
                 else
-                    await EmailService.sendWelcomeEmail(newUser.Email, $"{newUser.Nombre } { newUser.Apellido}");
+                    await EmailService.sendWelcomeEmail(newUser.Email, newUser.Nombre);
             }
         }
 

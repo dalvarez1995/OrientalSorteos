@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Sorteos Oriental - Crear Sorteo" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Nuevo.aspx.cs" ValidateRequest="false" Inherits="Sorteos.Web.Administracion.Sorteos.Nuevo" %>
+﻿<%@ Page Title="Crear Sorteo - Administración" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Nuevo.aspx.cs" ValidateRequest="false" Inherits="Sorteos.Web.Administracion.Sorteos.Nuevo" %>
 
 <asp:Content ID="nuevoSorteoHead" ContentPlaceHolderID="header" runat="server">
 </asp:Content>

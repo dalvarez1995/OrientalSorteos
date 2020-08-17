@@ -37,6 +37,8 @@ namespace Sorteos.Data
         public string WhatsappLink { get; set; }
         public Nullable<bool> MasterSite { get; set; }
         public bool Activo { get; set; }
+        public string SupportUrl { get; set; }
+        public string EmailTemplates { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sorteo> Sorteo { get; set; }

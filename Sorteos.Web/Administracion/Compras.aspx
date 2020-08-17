@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Sorteos - Compras" Language="C#" MasterPageFile="~/Admin.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Compras.aspx.cs" Inherits="Sorteos.Web.Administracion.Compras" %>
+﻿<%@ Page Title="Compras - Administración" Language="C#" MasterPageFile="~/Admin.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Compras.aspx.cs" Inherits="Sorteos.Web.Administracion.Compras" %>
 
 <asp:Content ID="compraHeader" ContentPlaceHolderID="header" runat="server">
     <webopt:BundleReference runat="server" Path="~/Content/css/datatables" />

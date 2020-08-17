@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login" MetaDescription="Inicia Sesión o registrate para empezar a participar" MetaKeywords="sorteo,concurso,regalo,premio,milky,oriental" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Sorteos.Web.Login" %>
+﻿<%@ Page Title="Login" MetaDescription="Inicia Sesión o registrate para empezar a participar" MetaKeywords="sorteo,concurso,regalo,premio,oriental,milky,la mana,te cha,soya,agua,bebidas," Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Sorteos.Web.Login" %>
 
 
 <asp:Content ID="loginHead" ContentPlaceHolderID="head" runat="server">
@@ -12,22 +12,20 @@
     </div>
     <div class="row form-row">
         <div class="input-field col s12">
-            <i class="fas fa-at prefix"></i>
+            <%--<i class="fas fa-at prefix"></i>--%>
             <asp:TextBox id="email" runat="server" type="email" CssClass="icon-prefix validate" />  
             <label for="email" class="icon-prefix">Correo electrónico</label>
         </div>
-        <asp:RequiredFieldValidator ErrorMessage="Ingrese su email" CssClass="error-message" SetFocusOnError="true" ControlToValidate="email" runat="server" />
-        <br />
-        <asp:RegularExpressionValidator ErrorMessage="Correo electrónico no válido" CssClass="error-message" ValidationExpression="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" ControlToValidate="email" runat="server" />
+        <asp:RequiredFieldValidator ErrorMessage="Ingrese su email" CssClass="error-message" Display="Dynamic"  SetFocusOnError="true" ControlToValidate="email" runat="server" />
+        <asp:RegularExpressionValidator ErrorMessage="Correo electrónico no válido" CssClass="error-message" Display="Dynamic" ValidationExpression="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" ControlToValidate="email" runat="server" />
     </div>
     <div class="row form-row">
         <div class="input-field col s12">
-            <i class="fas fa-key prefix"></i>
+            <%--<i class="fas fa-key prefix"></i>--%>
             <asp:TextBox id="password" runat="server" type="password" CssClass="icon-prefix validate" /> 
             <label for="password" class="icon-prefix">Contraseña</label>
         </div>
-        <asp:RequiredFieldValidator ErrorMessage="Ingrese su contraseña" CssClass="error-message" SetFocusOnError="true" ControlToValidate="password" runat="server" />
-        <br />
+        <asp:RequiredFieldValidator ErrorMessage="Ingrese su contraseña" CssClass="error-message" Display="Dynamic" SetFocusOnError="true" ControlToValidate="password" runat="server" />
     </div>
     <a href="/Olvido-Password" class="change-password-link left-align">Olvido su contraseña?</a>
     <div class="row"></div>

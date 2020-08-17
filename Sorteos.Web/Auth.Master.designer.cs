@@ -33,13 +33,13 @@ namespace Sorteos.Web
         protected global::System.Web.UI.WebControls.ContentPlaceHolder logo;
 
         /// <summary>
-        /// mainImage control.
+        /// mainLogo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage mainImage;
+        protected global::System.Web.UI.HtmlControls.HtmlImage mainLogo;
 
         /// <summary>
         /// main control.

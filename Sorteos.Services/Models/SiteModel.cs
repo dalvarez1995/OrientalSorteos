@@ -23,5 +23,14 @@ namespace Sorteos.Services.Models
         public string InstagramLink { get; set; }
         public string FacebookLink { get; set; }
         public string EmailAccount { get; set; }
+        public string SupportUrl { get; set; }
+        public EmailTemplates EmailTemplates { get; set; }
+
+    }
+
+    public struct EmailTemplates {
+        public string ActivationTemplateId;
+        public string RecoverPasswordTemplateId;
+        public string WelcomeTemplateId;
     }
 }

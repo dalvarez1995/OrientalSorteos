@@ -20,7 +20,6 @@ namespace Sorteos.Web
 
             }
             WebContext.ValidateAdminArea();
-
             var currentUser = WebContext.GetCurrentUser();
             if (currentUser == null)
             {

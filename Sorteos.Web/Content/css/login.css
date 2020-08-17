@@ -10,8 +10,9 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 7rem;
-    background-image: url(/Content/images/background-pattern.svg);
-    background-repeat: repeat;
+    /*background-image: url(/Content/images/background-pattern.svg);
+    background-repeat: repeat;*/
+    min-height: 100vh;
 }
 
 .login-content {
@@ -21,16 +22,13 @@ body {
     text-align: center;
     /*background-image: url(/Content/images/paint-splash.svg);
     background-repeat: no-repeat;
-    background-color: #fff;*/
+    */
+    background-color: #fff;
     margin: 10px 0;
     transition: .3s ease;
 }
 
-@media only screen and (min-width: 768px) {
-    .login-div {
-        width: 475px;
-    }
-}
+
 
 
 /*.container {
@@ -47,9 +45,20 @@ body {
     transition: 0.3s ease;
 }
 
+@media only screen and (min-width: 768px) {
+    .login-div {
+        width: 550px;
+        padding: 35px;
+    }
+
+    .row.form-row {
+        padding: 0 20px;
+    }
+}
+
 .logo {
-    width: 75%;
-    height: auto;
+    /*width: 75%;*/
+    height: 140px;
     object-fit: contain;
     margin: 0 auto;
     /*border: 1px solid #ddd;*/
@@ -61,21 +70,24 @@ body {
     font-size: smaller;
     color: #EA252A;
 }
-
+/*
  .form-row {
     margin-top: 0 !important;
     margin-bottom: 10px !important;
     max-height: 100px;
-}
+}*/
 
-.input-field {
+/*.input-field {
     padding-left:0 !important;
     margin-bottom:0 !important;
-}
+}*/
+
 
     .input-field label {
         pointer-events: none;
     }
+
+
 
 
 input:not([type]):focus:not([readonly]) + label, .form-wrap input[type=text]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=password]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=email]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=url]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=time]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=date]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=datetime]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=datetime-local]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=tel]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=number]:not(.browser-default):focus:not([readonly]) + label, .form-wrap input[type=search]:not(.browser-default):focus:not([readonly]) + label, .form-wrap textarea.materialize-textarea:focus:not([readonly]) + label {

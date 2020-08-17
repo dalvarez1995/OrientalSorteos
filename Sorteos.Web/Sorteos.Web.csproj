@@ -152,8 +152,14 @@
     <Content Include="Content\images\default-user.png" />
     <Content Include="Content\images\empty-raffle.svg" />
     <Content Include="Content\images\background-pattern.svg" />
+    <Content Include="Content\images\facebook.svg" />
+    <Content Include="Content\images\l-mana_logo.png" />
+    <Content Include="Content\images\milky_logo.jpg" />
+    <Content Include="Content\images\newspaper.svg" />
     <Content Include="Content\images\person-smiley.svg" />
     <Content Include="Content\images\regreso-clases.jpeg" />
+    <Content Include="Content\images\shop.svg" />
+    <Content Include="Content\images\supermarket.svg" />
     <Content Include="Content\images\winner_.svg" />
     <Content Include="Scripts\jquery\jquery.fireworks.js" />
     <Content Include="favicon.ico" />

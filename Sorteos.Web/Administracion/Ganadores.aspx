@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Ganadores.aspx.cs" Inherits="Sorteos.Web.Administracion.Ganadores" %>
+﻿<%@ Page Title="Ganadores - Administración" Language="C#" MasterPageFile="~/Admin.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="Ganadores.aspx.cs" Inherits="Sorteos.Web.Administracion.Ganadores" %>
 
 <asp:Content ID="ganadoresHeader" ContentPlaceHolderID="header" runat="server">
 </asp:Content>

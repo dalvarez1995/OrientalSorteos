@@ -95,7 +95,7 @@ namespace Sorteos.Services
                         c.Estado == (int)PurchaseStatus.Pendiente
                     orderby c.FechaCreacion descending
                     select c
-                ).Select(c => new PurchaseModel
+                ).ToList().Select(c => new PurchaseModel
                 {
                     Id = c.Id,
                     Brand = new BrandModel

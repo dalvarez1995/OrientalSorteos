@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Threading.Tasks;
 using Sorteos.Services.Properties;
 using System.Security.Cryptography.X509Certificates;
+using System;
 
 namespace Sorteos.Services
 {
@@ -13,16 +14,23 @@ namespace Sorteos.Services
 
         }
 
-        public static async Task sendActivationAccountEmail(string email,string otp)
+        public static async Task sendActivationAccountEmail(string customerName,string email,string otp)
         {
-            var payload = new string[][] { new string[] { "userId", email } };
+            if (string.IsNullOrEmpty(AppSingleton.Instance.Sitio.EmailTemplates.ActivationTemplateId))
+                throw new Exception("El identificador de la plantilla del email no se ha encontrado.");
             var subject = "Activa tu cuenta";
-            var templateId = "d-49a7742952c246a0be740c82443e701f";
-            var company = AppSingleton.Instance.Sitio.Company;
+            var templateId = AppSingleton.Instance.Sitio.EmailTemplates.ActivationTemplateId;
+            var loginUrl = $"{AppSingleton.Instance.Sitio.BaseUrl}/Login";
+            var siteName = AppSingleton.Instance.Sitio.PageTitle;
+            var supportUrl = AppSingleton.Instance.Sitio.SupportUrl;
+            var brand = AppSingleton.Instance.Sitio.Company;
             var dynamicTemplateData = $@"
-      	            'destination' : '{email}',
-	                'company_name': '{company}',
-	                'code_otp':'{otp}'
+                    ""customer_name"":""{customerName}"",
+                    ""code_otp"":""{otp}"",
+                    ""login_url"":""{loginUrl}"",
+                    ""site_name"":""{siteName}"",
+                    ""support_url"":""{supportUrl}"",
+                    ""brand"":""{brand}""
             ";
 
             var response = await Send(email,subject, templateId, dynamicTemplateData);
@@ -42,64 +50,76 @@ namespace Sorteos.Services
             var logo = AppSingleton.Instance.Sitio.LogoSrc;
 
             var body = $@"{{
-                'subject': '{subject}',
-                'personalizations': [
+                ""subject"": ""{subject}"",
+                ""personalizations"": [
                 {{
-                    'to': [
+                    ""to"": [
                     {{
-                        'email': '{to}'
+                        ""email"": ""{to}""
                     }}
                     ],
-                    'subject': '{subject}',
-                    'dynamic_template_data': {{
-                        'facebook_link':'{facebook}',
-	                    'instagram_link':'{instagram}',
-	                    'whatsapp_link':'{whatsapp}',
-	                    'logo_src':'{logo}',
+                    ""subject"": ""{subject}"",
+                    ""dynamic_template_data"": {{
+                        ""facebook_link"":""{facebook}"",
+	                    ""instagram_link"":""{instagram}"",
+	                    ""whatsapp_link"":""{whatsapp}"",
+	                    ""logo_src"":""{logo}"",
                         {dynamicTemplateData}
                     }}
                 }}
                 ],
-                'from': {{
-                    'email': '{emailAccount}',
-                    'name': 'Notificaciones {company}'
+                ""from"": {{
+                    ""email"": ""{emailAccount}"",
+                    ""name"": ""Notificaciones {company}""
                 }},
-                'template_id': '{templateId}'
+                ""template_id"": ""{templateId}""
             }}";
 
             return await client.RequestAsync(method: SendGridClient.Method.POST,
                                                      urlPath: "mail/send",
-                                                     requestBody: body.Replace("'", "\""));
+                                                     requestBody: body);
         }
 
-        public static async Task sendWelcomeEmail(string email,string nombreCompleto)
+        public static async Task sendWelcomeEmail(string email,string customerName)
         {
+            if (string.IsNullOrEmpty(AppSingleton.Instance.Sitio.EmailTemplates.WelcomeTemplateId))
+                throw new Exception("El identificador de la plantilla del email no se ha encontrado.");
+
             var loginUrl = $"{AppSingleton.Instance.Sitio.BaseUrl}/Login";
-            var templateId = "d-dc029ea4bec34cb1b740adb7267ecb49";
+            var templateId = AppSingleton.Instance.Sitio.EmailTemplates.WelcomeTemplateId;
             var subject = "Bienvenido";
+            var siteName = AppSingleton.Instance.Sitio.PageTitle;
+            var supportUrl = AppSingleton.Instance.Sitio.SupportUrl;
+            var brand = AppSingleton.Instance.Sitio.Company;
 
             var dynamicTemplateData = $@"
-                    'page_name': 'Sorteos Oriental',
-      	            'login_url' : '{loginUrl}',
-	                'full_name': '{nombreCompleto}'
+                    ""customer_name"":""{customerName}"",
+                    ""login_url"":""{loginUrl}"",
+                    ""site_name"":""{siteName}"",
+                    ""support_url"":""{supportUrl}"",
+                    ""brand"":""{brand}""
             ";
 
             var response = await Send(email,subject, templateId, dynamicTemplateData);
         }
 
 
-        public static async Task sendRecoverPasswordEmail(string email,string name)
+        public static async Task sendRecoverPasswordEmail(string email,string customerName)
         {
+            if (string.IsNullOrEmpty(AppSingleton.Instance.Sitio.EmailTemplates.RecoverPasswordTemplateId))
+                throw new Exception("El identificador de la plantilla del email no se ha encontrado.");
             var payload = new string[][] { new string[] { "userId", email } };
             var token = SecurityUtil.GenerateJwtToken(payload,30);
             var subject = "Cambio de Contraseña";
-            var activationUrl = $"{AppSingleton.Instance.Sitio.BaseUrl}/Cambio-Password?pid={token}";
-            var templateId = "d-ca31fbb3e157433b96ae2c0d962d564e";
-            var company = AppSingleton.Instance.Sitio.Company;
+            var passwordRecoverUrl = $"{AppSingleton.Instance.Sitio.BaseUrl}/Cambio-Password?pid={token}";
+            var templateId = AppSingleton.Instance.Sitio.EmailTemplates.RecoverPasswordTemplateId;
+            var brand = AppSingleton.Instance.Sitio.Company;
+            var supportUrl = AppSingleton.Instance.Sitio.SupportUrl;
             var dynamicTemplateData = $@"
-                    'name': '{name}'
-	                'company_name': '{company}',
-	                'activation_url':'{activationUrl}'
+                    ""customer_name"": ""{customerName}"",
+	                ""brand"": ""{brand}"",
+                    ""support_url"":""{supportUrl}"",
+	                ""password_recover_url"":""{passwordRecoverUrl}""
             ";
 
             var response = await Send(email, subject, templateId, dynamicTemplateData);

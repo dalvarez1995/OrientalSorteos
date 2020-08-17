@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Sorteos Oriental - Sorteos Registrados" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Sorteos.Web.Administracion.Sorteos.Default" %>
+﻿<%@ Page Title="Sorteos - Administración" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Sorteos.Web.Administracion.Sorteos.Default" %>
 <asp:Content ID="sorteosHeader" ContentPlaceHolderID="header" runat="server">
      <webopt:BundleReference runat="server" Path="~/Content/css/datatables" />
 </asp:Content>

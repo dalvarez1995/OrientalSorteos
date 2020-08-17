@@ -1,4 +1,5 @@
-﻿using Sorteos.Data;
+﻿using Newtonsoft.Json;
+using Sorteos.Data;
 using Sorteos.Services.Models;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Sorteos.Services
         {
             using (var context = new SorteosDbEntities())
             {
-                return context.Sitio.Where(s => s.ClientId == clientId).Select(s => new SiteModel
+                return context.Sitio.Where(s => s.ClientId == clientId).ToList().Select(s => new SiteModel
                 {
                     Id = s.Id,
                     PageTitle = s.PageTitle,
@@ -29,7 +30,9 @@ namespace Sorteos.Services
                     FacebookSecretKey = s.FacebookSecretKey,
                     InstagramLink = s.InstagramLink,
                     SendGridApiKey = s.SendGridApiKey,
-                    WhatsappLink = s.WhatsappLink
+                    WhatsappLink = s.WhatsappLink,
+                    SupportUrl = s.SupportUrl,
+                    EmailTemplates = JsonConvert.DeserializeObject<EmailTemplates>(s.EmailTemplates)
                 }).FirstOrDefault();
             }
         }
@@ -38,7 +41,7 @@ namespace Sorteos.Services
         {
             using (var context = new SorteosDbEntities())
             {
-                return context.Sitio.Where(s => s.Id == id).Select(s => new SiteModel
+                return context.Sitio.Where(s => s.Id == id).ToList().Select(s => new SiteModel
                 {
                     Id = s.Id,
                     PageTitle = s.PageTitle,
@@ -53,7 +56,9 @@ namespace Sorteos.Services
                     FacebookSecretKey = s.FacebookSecretKey,
                     InstagramLink = s.InstagramLink,
                     SendGridApiKey = s.SendGridApiKey,
-                    WhatsappLink = s.WhatsappLink
+                    WhatsappLink = s.WhatsappLink,
+                    SupportUrl = s.SupportUrl,
+                    EmailTemplates = JsonConvert.DeserializeObject<EmailTemplates>(s.EmailTemplates)
                 }).FirstOrDefault();
             }
         }
@@ -79,7 +84,7 @@ namespace Sorteos.Services
                 if (!showNonActive)
                     query = query.Where(s => s.Activo == true);
 
-                return query.Select(s => new SiteModel
+                return query.ToList().Select(s => new SiteModel
                 {
                     Id = s.Id,
                     PageTitle = s.PageTitle,
@@ -94,7 +99,9 @@ namespace Sorteos.Services
                     FacebookSecretKey = s.FacebookSecretKey,
                     InstagramLink = s.InstagramLink,
                     SendGridApiKey = s.SendGridApiKey,
-                    WhatsappLink = s.WhatsappLink
+                    WhatsappLink = s.WhatsappLink,
+                    SupportUrl = s.SupportUrl,
+                    EmailTemplates = JsonConvert.DeserializeObject<EmailTemplates>(s.EmailTemplates)
                 }).ToList();
             }
         }

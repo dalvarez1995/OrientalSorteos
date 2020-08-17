@@ -20,19 +20,19 @@
                 <div class="row" style="height: 350px; display: grid; grid-template-rows: repeat(2,1fr); grid-template-columns: auto;">
                     <div style="display: flex; align-items: center; grid-row: 1/2; cursor: pointer; border-radius: 15px;" onmouseover="this.style.backgroundColor = '#bbfbf5'" onmouseout="this.style.backgroundColor = 'transparent'" onclick="checkRadioButton(this,event)">
                         <div class="row">
-                            <i class="fas fa-home fa-4x" style="color: #0094ff;"></i>
+                            <img src="/Content/images/facebook.svg" height="50" alt="" />
                             <label>
                                 <input id="radioDigital" runat="server" name="publicidad" type="radio"  value="tienda" />
-                                <span>Publicidad Digital (Redes sociales, sitios web,etc.)</span>
+                                <span>Publicidad Digital</span>
                             </label>
                         </div>
                     </div>
                     <div style="display: flex; align-items: center; grid-row: 2/2; cursor: pointer; border-radius: 15px;" onmouseover="this.style.backgroundColor = '#bbfbf5'" onmouseout="this.style.backgroundColor = 'transparent'" onclick="checkRadioButton(this,event)">
                         <div class="row">
-                            <i class="fas fa-industry fa-4x" style="color: #0094ff;"></i>
+                            <img src="/Content/images/newspaper.svg" height="50" alt="" />
                             <label>
                                 <input id="radioImpresa" runat="server" name="publicidad" type="radio" value="super" />
-                                <span>Publicidad Impresa (Tiendas,Supermercados, Prensa, etc.)</span>
+                                <span>Publicidad Impresa</span>
                             </label>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                 <div class="row" style="height: 350px; display: grid; grid-template-rows: repeat(2,1fr); grid-template-columns: auto;">
                     <div style="display: flex; align-items: center; grid-row: 1/2; cursor: pointer; border-radius: 15px;" onmouseover="this.style.backgroundColor = '#bbfbf5'" onmouseout="this.style.backgroundColor = 'transparent'" onclick="checkRadioButton(this,event)">
                         <div class="row">
-                            <i class="fas fa-home fa-4x" style="color: #0094ff;"></i>
+                            <img src="/Content/images/shop.svg" height="50" alt="" />
                             <label>
                                 <input id="radioTienda" runat="server" name="tipoNegocio" type="radio" value="tienda" />
                                 <span>Tienda</span>
@@ -56,7 +56,7 @@
                     </div>
                     <div style="display: flex; align-items: center; grid-row: 2/2; cursor: pointer; border-radius: 15px;" onmouseover="this.style.backgroundColor = '#bbfbf5'" onmouseout="this.style.backgroundColor = 'transparent'" onclick="checkRadioButton(this,event)">
                         <div class="row">
-                            <i class="fas fa-industry fa-4x" style="color: #0094ff;"></i>
+                            <img src="/Content/images/supermarket.svg" height="50" alt="" />
                             <label>
                                 <input id="radioSupermercado" runat="server" name="tipoNegocio" type="radio" value="super" />
                                 <span>Supermercado</span>

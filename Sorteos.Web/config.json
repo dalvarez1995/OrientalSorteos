@@ -1,4 +1,6 @@
 {
-  "ClientId": "c9836529-14cf-4fff-8f8b-a15995aa79f0",
-  "TokenSecret": "6d4da71c-5ebe-451a-ae32-cd0848276f49"
+  "ClientId": "d8aebe96-4049-4cb5-807f-e3a97da3b458",
+  "TokenSecret": "6d4da71c-5ebe-451a-ae32-cd0848276f49",
+  "LogoSrc":"/Content/images/l-mana_logo.png",
+  "PatternSrc":""
 }

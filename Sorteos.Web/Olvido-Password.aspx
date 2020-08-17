@@ -8,7 +8,7 @@
     <div class="row">
         <p>
             A continuación ingrese la dirección de correo electrónico asociado a su cuenta.
-            En caso de haberse registrado mediante facebook, ingrese su correo de facebook.
+            En caso de haberse registrado mediante facebook, ingrese su correo registrado en su cuenta de facebook.
         </p>
     </div>
     <div class="row form-row">
@@ -17,9 +17,8 @@
             <asp:TextBox id="email" runat="server" type="email" CssClass="icon-prefix validate" />  
             <label for="email" class="icon-prefix">Correo electrónico</label>
         </div>
-        <asp:RequiredFieldValidator ErrorMessage="Ingrese su email" CssClass="error-message" SetFocusOnError="true" ControlToValidate="email" runat="server" />
-        <br />
-        <asp:RegularExpressionValidator ErrorMessage="Correo electrónico no válido" CssClass="error-message" ValidationExpression="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" ControlToValidate="email" runat="server" />
+        <asp:RequiredFieldValidator ErrorMessage="Ingrese su email" CssClass="error-message" Display="Dynamic" SetFocusOnError="true" ControlToValidate="email" runat="server" />
+        <asp:RegularExpressionValidator ErrorMessage="Correo electrónico no válido" CssClass="error-message" Display="Dynamic" ValidationExpression="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" ControlToValidate="email" runat="server" />
     </div>
     <div class="row">
         <p>

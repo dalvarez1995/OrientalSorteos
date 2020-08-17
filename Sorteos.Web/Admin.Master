@@ -5,7 +5,7 @@
 
 <html lang="es">
 <head runat="server">
-    <title>Regreso a Clases Milky - Area de administración</title>
+    <title>Administración - <%: Sorteos.Services.AppSingleton.Instance.Sitio.PageTitle %></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

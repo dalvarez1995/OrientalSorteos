@@ -11,11 +11,15 @@ namespace Sorteos.Services
     {
         public static AppSingleton Instance { get; private set; }
         public string TokenSecret { get; private set; }
+        public string LogoSrc { get; set; }
+        public string PatternSrc { get; set; }
         public SiteModel Sitio { get; set; }
         private AppSingleton(AppSettings settings)
         {
             TokenSecret = settings.TokenSecret;
             Sitio = new SiteService().GetSiteByClientId(settings.ClientId);
+            LogoSrc = settings.LogoSrc;
+            PatternSrc = settings.PatternSrc;
         }
 
         public static void Init(AppSettings settings)

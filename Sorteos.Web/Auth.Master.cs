@@ -11,7 +11,12 @@ namespace Sorteos.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["ShowAlert"] != null)
+            if (!string.IsNullOrEmpty(Services.AppSingleton.Instance.LogoSrc))
+                mainLogo.Src = Services.AppSingleton.Instance.LogoSrc;
+            else
+                mainLogo.Src = "/Content/images/oriental-logo.png";
+
+                if (Session["ShowAlert"] != null)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "notification", Session["ShowAlert"].ToString(), true);
                 Session["ShowAlert"] = null;

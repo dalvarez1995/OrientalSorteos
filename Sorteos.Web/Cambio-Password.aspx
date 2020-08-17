@@ -25,9 +25,8 @@
                     <asp:TextBox ID="password" ClientIDMode="Static" runat="server" type="password" AutoCompleteType="Cellular" minlength="4" CssClass="icon-prefix validate" required="true" />
                     <label for="password" class="icon-prefix">Contraseña</label>
                 </div>
-                <asp:RequiredFieldValidator ErrorMessage="Ingrese la contraseña" CssClass="error-message" SetFocusOnError="true" ControlToValidate="password" runat="server" />
-                <br />
-                <asp:RegularExpressionValidator ErrorMessage="La contraseña debe tener mínimo 4 caractéres" CssClass="error-message" ValidationExpression="(^.{4,}$)" ControlToValidate="password" runat="server" />
+                <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Ingrese la contraseña" CssClass="error-message" SetFocusOnError="true" ControlToValidate="password" runat="server" />
+                <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="La contraseña debe tener mínimo 4 caractéres" CssClass="error-message" ValidationExpression="(^.{4,}$)" ControlToValidate="password" runat="server" />
             </div>
             <div class="row">
                 <div class="input-field placeholded col s12">

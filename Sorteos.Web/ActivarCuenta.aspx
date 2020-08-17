@@ -25,7 +25,7 @@
                 <asp:TextBox ID="otp_code" ClientIDMode="Static" runat="server" CssClass="icon-prefix validate" required="true" />
                 <label for="otp_code" class="icon-prefix">Codigo OTP</label>
             </div>
-            <asp:RequiredFieldValidator ErrorMessage="Ingrese el código enviado a su correo electrónico" CssClass="error-message" SetFocusOnError="true" ControlToValidate="otp_code" runat="server" />
+            <asp:RequiredFieldValidator ErrorMessage="Ingrese el código enviado a su correo electrónico" Display="Dynamic" CssClass="error-message" SetFocusOnError="true" ControlToValidate="otp_code" runat="server" />
         </div>
         <div class="row"></div>
         <div class="row">
