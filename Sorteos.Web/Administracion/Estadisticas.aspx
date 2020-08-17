@@ -11,7 +11,7 @@
 
                     <hr />
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mb-2">
                     <label class="font-normal">Sorteo</label>
                     <div class="input-group date">
                         <span class="input-group-addon"><i class="fa fa-file"></i></span>
@@ -19,7 +19,7 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                <div class="col-md-6" style="align-self:flex-end;">
+                <div class="col-md-6 mb-2" style="align-self:flex-end;">
                     <button class="btn btn-primary" onclick="loadCharts(true); return false;">
                         <i class="fas fa-sync left"></i>
                         Actualizar</button>

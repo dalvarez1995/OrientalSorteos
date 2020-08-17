@@ -136,7 +136,7 @@ function createChart(el, type, data, labels, title, dsTitle, random) {
                         return `${round((args.value * 100 / max), 2)}%`; //Calculate percent
                     },
                     textMargin: 4,
-                    fontSize: 9,
+                    fontSize: 8,
                     fontColor: "#EEEEEE"
                 }
             }

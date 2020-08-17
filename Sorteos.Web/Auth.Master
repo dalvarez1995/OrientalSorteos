@@ -58,7 +58,7 @@
                        const yearLabel = document.getElementById('currentYear');
                        yearLabel.innerText = new Date().getUTCFullYear();
                    })();
-                            </script >
+                            </script>
                     </div>
                 </div>
                 <%: Scripts.Render("~/bundles/login") %>
