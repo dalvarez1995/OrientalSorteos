@@ -18,7 +18,7 @@ namespace Sorteos.Web.Administracion
                 var currentRaffle = raffleService.findCurrentRaffle();
 
                 var raffles = raffleService.GetAllRaffles();
-                cboSorteos.Items.Add(new ListItem("Seleccione un sorteo", "0"));
+                cboSorteos.Items.Add(new ListItem("Todos", "0"));
                 raffles.ForEach(raffle =>
                 {
 

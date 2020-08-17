@@ -51,7 +51,7 @@ namespace Sorteos.Services
                 var months = (from purchs in context.Compra
                               where
                                 purchs.FechaCreacion > initialDate &&
-                                purchs.Sorteo.SitioId == (raffleId > 0 ? raffleId : purchs.Sorteo.SitioId)
+                                purchs.SorteoId == (raffleId > 0 ? raffleId : purchs.SorteoId)
                               group purchs by new { day = purchs.FechaCreacion.Day, months = purchs.FechaCreacion.Month })
                               .AsEnumerable()
                               .Select(d => new { date = string.Format("{0}/{1}", d.Key.day, d.Key.months), count = d.Count() }).ToList();
@@ -85,7 +85,7 @@ namespace Sorteos.Services
             {
                 var statesPurchs = (from purchs in context.Compra
                                     where
-                                        purchs.Sorteo.SitioId == (raffleId > 0 ? raffleId : purchs.Sorteo.SitioId)
+                                        purchs.SorteoId == (raffleId > 0 ? raffleId : purchs.SorteoId)
                                     group purchs by new { state = purchs.Provincia.Nombre})
                               .AsEnumerable()
                               .Select(d => new { state = d.Key.state, count = d.Count() }).ToList();
@@ -120,7 +120,7 @@ namespace Sorteos.Services
             {
                 var publicityPurchs = (from purchs in context.Compra
                                    where
-                                         purchs.Sorteo.SitioId == (raffleId > 0 ? raffleId : purchs.Sorteo.SitioId)
+                                         purchs.SorteoId == (raffleId > 0 ? raffleId : purchs.SorteoId)
                                    group purchs by new { publicity = purchs.TipoPublicidad })
                               .AsEnumerable()
                               .Select(d => new { publicity = d.Key.publicity, count = d.Count() }).ToList();
@@ -153,7 +153,7 @@ namespace Sorteos.Services
             {
                 var brandPurchs = (from purchs in context.Compra
                                   where
-                                        purchs.Sorteo.SitioId == (raffleId > 0 ? raffleId : purchs.Sorteo.SitioId)
+                                        purchs.SorteoId == (raffleId > 0 ? raffleId : purchs.SorteoId)
                                   group purchs by new { brand = purchs.Marca.Descripcion })
                               .AsEnumerable()
                               .Select(d => new { brand = d.Key.brand, count = d.Count() }).ToList();
@@ -187,7 +187,7 @@ namespace Sorteos.Services
             {
                 var typePurchs = (from purchs in context.Compra
                                   where
-                                        purchs.Sorteo.SitioId == (raffleId > 0 ? raffleId : purchs.Sorteo.SitioId)
+                                        purchs.SorteoId == (raffleId > 0 ? raffleId : purchs.SorteoId)
                                   group purchs by new { type = purchs.Tipo })
                               .AsEnumerable()
                               .Select(d => new { type = d.Key.type, count = d.Count() }).ToList();
