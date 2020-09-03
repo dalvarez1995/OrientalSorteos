@@ -152,6 +152,9 @@
     <Content Include="Content\images\default-user.png" />
     <Content Include="Content\images\empty-raffle.svg" />
     <Content Include="Content\images\background-pattern.svg" />
+    <Content Include="Content\images\eyacm_logo-300x300.png" />
+    <Content Include="Content\images\eyacm_pattern.png" />
+    <Content Include="Content\images\eyacm_pattern.svg" />
     <Content Include="Content\images\facebook.svg" />
     <Content Include="Content\images\l-mana_logo.png" />
     <Content Include="Content\images\milky_logo.jpg" />
@@ -159,8 +162,13 @@
     <Content Include="Content\images\person-smiley.svg" />
     <Content Include="Content\images\regreso-clases.jpeg" />
     <Content Include="Content\images\shop.svg" />
+    <Content Include="Content\images\slot-machine.svg" />
     <Content Include="Content\images\supermarket.svg" />
+    <Content Include="Content\images\vote.svg" />
+    <Content Include="Content\images\waiting.svg" />
     <Content Include="Content\images\winner_.svg" />
+    <Content Include="Content\lib\fliptimer\css\fliptimer.css" />
+    <Content Include="Content\lib\fliptimer\js\fliptimer.js" />
     <Content Include="Scripts\jquery\jquery.fireworks.js" />
     <Content Include="favicon.ico" />
     <Content Include="Content\images\oriental-logo-2.png" />

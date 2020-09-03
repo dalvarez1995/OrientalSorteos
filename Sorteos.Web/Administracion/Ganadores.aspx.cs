@@ -19,6 +19,7 @@ namespace Sorteos.Web.Administracion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            pnlNoFinalizedRaffle.Visible = false;
             pnlFinishedRaffle.Visible = false;
             pnlWinnerSelection.Visible = false;
             pnlSelectRaffle.Visible = false;
@@ -50,11 +51,13 @@ namespace Sorteos.Web.Administracion
                 {
                     pnlFinishedRaffle.Visible = true;
                     ClientScript.RegisterStartupScript(GetType(), "datatableInitialization", $"drawDtWinnersFinalized();", true);
+                } else if (selectedRaffle.EndDate > DateTime.UtcNow.AddHours(-5)) {
+                    pnlNoFinalizedRaffle.Visible = true;
                 }
                 else
                 {
                     pnlWinnerSelection.Visible = true;
-                    txtParticipants.Value = string.Join("\n", raffleService.GetParticipants().Select( p => $"{p.FullName}-{p.ChancesNumber}-{p.UserId}"));
+                    txtParticipants.Value = string.Join("\n", raffleService.GetParticipantsByRaffle(selectedRaffle.Id).Select(p => $"{p.FullName}-{p.ChancesNumber}-{p.UserId}"));
                     ClientScript.RegisterStartupScript(GetType(), "datatableInitialization", $"drawDtWinners();", true);
                 }
 

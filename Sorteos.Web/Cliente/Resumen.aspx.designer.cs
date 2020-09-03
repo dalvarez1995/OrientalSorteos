@@ -33,15 +33,6 @@ namespace Sorteos.Web.Cliente
         protected global::System.Web.UI.WebControls.Panel empecemos;
 
         /// <summary>
-        /// nombreSorteo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl nombreSorteo;
-
-        /// <summary>
         /// comprasRegistradas control.
         /// </summary>
         /// <remarks>

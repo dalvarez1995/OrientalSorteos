@@ -126,7 +126,7 @@ namespace Sorteos.Services
                 Email = email.ToLower(),
                 Telefono = cellphone,
                 PasswordHash = password,
-                SorteoId = currentRaffle?.SiteId ?? null
+                SorteoId = currentRaffle?.Id ?? null
             };
 
             newUser.PasswordHash = SecurityUtil.HashPassword(newUser.PasswordHash);

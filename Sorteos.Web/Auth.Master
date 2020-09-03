@@ -11,14 +11,20 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
 
+    <meta property="og:site_name" content="<%: $"{Sorteos.Services.AppSingleton.Instance.Sitio.PageTitle}" %>"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="es_EC"/>
+    <meta property="fb:app_id" content="<%: $"{Sorteos.Services.AppSingleton.Instance.Sitio.FacebookClientId}" %>" />
+    <meta property="og:image" content="<%: $"{Sorteos.Services.AppSingleton.Instance.Sitio.BaseUrl}{Sorteos.Services.AppSingleton.Instance.LogoSrc}" %>"/>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
     <% if (!string.IsNullOrEmpty(Sorteos.Services.AppSingleton.Instance.PatternSrc))
         { %>
     <style>
         .contenedor {
-            background-image: url('/Content/images/<%: Sorteos.Services.AppSingleton.Instance.PatternSrc %>');
-            background-repeat: no-repeat;
+            background-image: url('<%: Sorteos.Services.AppSingleton.Instance.PatternSrc %>');
         }
     </style>
     <%}%>
@@ -39,31 +45,50 @@
                         <asp:ContentPlaceHolder ID="main" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>
-                    <div class="row">
-                        <h6 class="o-label"><span>Sitio</span></h6>
-                        <a href="/Login">Inicio</a>
-                        <br />
-                        <a href="/Condiciones-Uso">Condiciones de Uso</a>
-                        <br />
-                        <a href="/Politica-Privacidad">Políticas de privacidad</a>
-                    </div>
-                    <div class="row">
-                        <b>Copyright &copy; 
-                        </b>
-                        <span id="currentYear"></span>
-                        Grupo Oriental 
+                    <div class="row site">
+                            <a href="/Login">Inicio</a>
+                            <a href="/Condiciones-Uso">Condiciones</a>
+                            <a href="/Politica-Privacidad">Políticas</a>
+                        </div>
+                        <div class="row copyright">
+                            <b>Copyright &copy; 
+                            </b>
+                            <span id="currentYear"></span>
+                            Grupo Oriental 
                             
                             <script>
                                 (function () {
-                       const yearLabel = document.getElementById('currentYear');
-                       yearLabel.innerText = new Date().getUTCFullYear();
-                   })();
+                                    const yearLabel = document.getElementById('currentYear');
+                                    yearLabel.innerText = new Date().getUTCFullYear();
+                                })();
                             </script>
-                    </div>
+                        </div>
                 </div>
                 <%: Scripts.Render("~/bundles/login") %>
             </form>
         </div>
     </div>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '<%: $"{Sorteos.Services.AppSingleton.Instance.Sitio.FacebookClientId}" %>',
+                cookie: true,
+                xfbml: true,
+                version: 'v8.0'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </body>
 </html>

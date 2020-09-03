@@ -97,7 +97,7 @@ namespace Sorteos.Web
                 "~/Scripts/public.datatable.js"
             ));
 
-            //Tiny MCE
+            // Tiny MCE
             bundles.Add(new ScriptBundle("~/bundles/tinymce").Include(
                "~/Content/lib/tinymce/tinymce-5.2.2.min.js"));
 
@@ -125,7 +125,14 @@ namespace Sorteos.Web
                 "~/Content/lib/jquery-steps/js/jquery-1.9.1.min.js"
                 ));
 
+            // FlipTimer css
+            bundles.Add(new StyleBundle("~/Content/css/fliptimer")
+                .Include("~/Content/lib/fliptimer/css/fliptimer.css"));
 
+            // FlipTimer js
+            bundles.Add(new ScriptBundle("~/bundles/fliptimer").Include(
+                "~/Content/lib/fliptimer/js/fliptimer.js"
+                ));
             BundleTable.EnableOptimizations = true;
         }
     }

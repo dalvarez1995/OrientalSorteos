@@ -1,8 +1,11 @@
-﻿<%@ Page Title="Registrarse" MetaKeywords="sorteo,concurso,regalo,premio,oriental,milky,la mana,te cha,soya,agua,bebidas," Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Registrarse.aspx.cs" Inherits="Sorteos.Web.Registrarse" Async="true" %>
+﻿<%@ Page Title="Registrarse" MetaDescription="Crea una cuenta en nuestro sitio para poder empezar a participar de este increíble sorteo que tenemos para ti." MetaKeywords="sorteo,concurso,regalo,premio,oriental,milky,la mana,te cha,soya,agua,bebidas," Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Registrarse.aspx.cs" Inherits="Sorteos.Web.Registrarse" Async="true" %>
 
 
 <asp:Content ID="registrarseHead" ContentPlaceHolderID="head" runat="server">
-     <meta name="robots" content="index"/>
+    <meta name="robots" content="index" />
+    <meta property="og:title" content="Registrarse"/>
+    <meta property="og:description" content="Crea una cuenta en nuestro sitio para poder empezar a participar de este increíble sorteo que tenemos para ti."/>
+    <meta property="og:url" content="<%: $"{Sorteos.Services.AppSingleton.Instance.Sitio.BaseUrl}/Registrarse" %>" />
 </asp:Content>
 
 
@@ -33,7 +36,6 @@
             <label for="firstName" class="icon-prefix">Nombre</label>
         </div>
         <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Ingrese su nombre" CssClass="error-message" SetFocusOnError="true" ControlToValidate="firstName" runat="server" />
-        <br />
         <asp:RegularExpressionValidator Display="Dynamic" EnableClientScript="true" ErrorMessage="El nombre debe tener mínimo 2 caractéres" CssClass="error-message" ValidationExpression="(^.{2,}$)" ControlToValidate="firstName" runat="server" />
     </div>
     <div class="row">
@@ -43,7 +45,7 @@
             <label for="lastName" class="icon-prefix">Apellido</label>
         </div>
         <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Ingrese su apellido" CssClass="error-message" SetFocusOnError="true" ControlToValidate="lastName" runat="server" />
-        <br />
+
         <asp:RegularExpressionValidator Display="Dynamic" EnableClientScript="true" ErrorMessage="El apellido debe tener mínimo 2 caractéres" CssClass="error-message" ValidationExpression="(^.{2,}$)" ControlToValidate="lastName" runat="server" />
     </div>
     <div class="row">
@@ -53,7 +55,7 @@
             <label for="email" class="icon-prefix">Correo electrónico</label>
         </div>
         <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Ingrese su correo electrónico" CssClass="error-message" SetFocusOnError="true" ControlToValidate="email" runat="server" />
-        <br />
+
         <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Correo electrónico no válido" CssClass="error-message" ValidationExpression="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" ControlToValidate="email" runat="server" />
 
     </div>
@@ -64,7 +66,7 @@
             <label for="cellNumber" class="icon-prefix">Whatsapp</label>
         </div>
         <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Ingrese su teléfono" CssClass="error-message" SetFocusOnError="true" ControlToValidate="cellNumber" runat="server" />
-        <br />
+
         <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="Teléfono no válido (9-10 digitos permitidos)" CssClass="error-message" ValidationExpression="(^[0-9]{9,10}$)" ControlToValidate="cellNumber" runat="server" />
     </div>
     <div class="row">
@@ -74,7 +76,7 @@
             <label for="password" class="icon-prefix">Contraseña</label>
         </div>
         <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Ingrese la contraseña" CssClass="error-message" SetFocusOnError="true" ControlToValidate="password" runat="server" />
-        <br />
+
         <asp:RegularExpressionValidator Display="Dynamic" ErrorMessage="La contraseña debe tener mínimo 4 caractéres" CssClass="error-message" ValidationExpression="(^.{4,}$)" ControlToValidate="password" runat="server" />
     </div>
     <div class="row">
@@ -84,7 +86,7 @@
             <label for="repeteatedPassword" class="icon-prefix">Repetir Contraseña</label>
         </div>
         <asp:RequiredFieldValidator Display="Dynamic" ErrorMessage="Contraseñas no coinciden" CssClass="error-message" SetFocusOnError="true" ControlToValidate="repeteatedPassword" runat="server" />
-        <br />
+
         <asp:CompareValidator Display="Dynamic" ErrorMessage="Contraseñas no coinciden" CssClass="error-message" ControlToValidate="repeteatedPassword" ControlToCompare="password" Operator="Equal" runat="server" />
     </div>
     <div class="row">

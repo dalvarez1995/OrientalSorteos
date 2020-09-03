@@ -1,18 +1,20 @@
-﻿<%@ Page Title="Login" MetaDescription="Inicia Sesión o registrate para empezar a participar" MetaKeywords="sorteo,concurso,regalo,premio,oriental,milky,la mana,te cha,soya,agua,bebidas," Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Sorteos.Web.Login" %>
+﻿<%@ Page Title="Login" MetaDescription="Inicia sesión y sigue incrementando tus oportunidades de ganar." MetaKeywords="sorteo,concurso,regalo,premio,oriental,milky,la mana,te cha,soya,agua,bebidas," Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Sorteos.Web.Login" %>
 
 
 <asp:Content ID="loginHead" ContentPlaceHolderID="head" runat="server">
-     <meta name="robots" content="index"/>
+    <meta name="robots" content="index"/>
+    <meta property="og:title" content="Login"/>
+    <meta property="og:description" content="Inicia sesión y sigue incrementando tus oportunidades de ganar."/>
+    <meta property="og:url" content="<%: $"{Sorteos.Services.AppSingleton.Instance.Sitio.BaseUrl}/Login" %>" />
 </asp:Content>
 
 
 <asp:Content ID="loginMain" ContentPlaceHolderID="main" runat="server">
     <div class="row center-align">
-        <h4>Ingresar</h4>
+        <h4>Ingresa</h4>
     </div>
     <div class="row form-row">
         <div class="input-field col s12">
-            <%--<i class="fas fa-at prefix"></i>--%>
             <asp:TextBox id="email" runat="server" type="email" CssClass="icon-prefix validate" />  
             <label for="email" class="icon-prefix">Correo electrónico</label>
         </div>
@@ -21,7 +23,6 @@
     </div>
     <div class="row form-row">
         <div class="input-field col s12">
-            <%--<i class="fas fa-key prefix"></i>--%>
             <asp:TextBox id="password" runat="server" type="password" CssClass="icon-prefix validate" /> 
             <label for="password" class="icon-prefix">Contraseña</label>
         </div>

@@ -17,9 +17,14 @@
             </div>
         </div>
     </div>
-    <div class="wrapper wrapper-content animated fadeInRight">
+    
+    <div runat="server" class="wrapper wrapper-content animated fadeInRight">
         <div class="row justify-content-center">
             <div class="col-xs-12 col-sm-12 col-md-12">
+                <asp:Panel runat="server" ID="pnlNoFinalizedRaffle" CssClass="text-center">
+                    <img src="/Content/images/waiting.svg" style="height: 300px;" />
+                    <h3>El sorteo aún no ha finalizado</h3>
+                </asp:Panel>
                 <asp:Panel runat="server" ID="pnlSelectRaffle" CssClass="text-center">
                     <img src="/Content/images/choose-option.svg" style="height: 300px;" />
                     <h1>Seleccione un sorteo</h1>

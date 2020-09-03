@@ -8,9 +8,6 @@
 </asp:Content>
 <asp:Content ID="participarMain" ContentPlaceHolderID="main" runat="server">
     <div class="row">
-        <h6 class="o-label"><span>REGISTRO</span></h6>
-    </div>
-    <div class="row">
         <div id="registrar-compra">
             <h4>Publicidad</h4>
             <section id="tipoPublicidad">
@@ -94,7 +91,7 @@
             <section>
                 <div class="row">
                     <h3>Ya casi estamos</h3>
-                    <p>Por último, selecciona la marca, ingresa el lote del producto y la cantidad de productos participantes que adquiriste, además, sube una fotografía <span id="fotografiaInfo">del producto </span> para validar la información que nos proporcionaste.</p>
+                    <p>Por último, selecciona la marca, ingresa el lote y cantidad de los productos que adquiriste, además, sube una fotografía <span id="fotografiaInfo">del producto/os </span> para validar la información que nos proporcionaste.</p>
                 </div>
                 <label>Marcas Participantes</label>
                 <div class="row">
@@ -145,7 +142,7 @@
         <div class="col s12">
             <a class="btn waves-effect waves-light" runat="server" href="/Cliente/Resumen" causesvalidation="false">
                 <i class=" fas fa-arrow-left left"></i>
-                VOLVER
+                CANCELAR REGISTRO
             </a>
         </div>
     </div>

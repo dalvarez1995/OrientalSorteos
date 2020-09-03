@@ -19,15 +19,41 @@ namespace Sorteos.Web.Cliente
             if (!WebContext.AnyRaffleActive()) {
                 noHaySorteos.Visible = true;
                 return;
-            } 
-            
+            }
+
             empecemos.Visible = true;
             RaffleService raffleService = new RaffleService();
             PurchaseService purchaseService = new PurchaseService();
 
             var activeRaffle = raffleService.findCurrentRaffle();
-            var numOfPurchases = purchaseService.GetCustomerPurchasesCount(WebContext.GetCurrentUser().Email,activeRaffle.Id);
-            nombreSorteo.InnerText = activeRaffle.Description;
+            var numOfPurchases = purchaseService.GetCustomerPurchasesCount(WebContext.GetCurrentUser().Email, activeRaffle.Id);
+
+            var flipTimerScript = $@"
+                $('.fliptimer').flipTimer({{
+                        date: '{activeRaffle.EndDate.ToString("yyyy/MM/dd HH:mm:ss")}',
+                        bgColor: '#EA252A',
+                        timeZone: -5,
+                        onFinish: function() {{
+                            $('#empecemos').html(`
+                                <div class=""col s12 m12"">
+                                    <div class=""card"">
+                                        <div class=""card-content"">
+                                            <img src = ""/Content/images/slot-machine.svg"" style=""height: 150px;"" />
+                                            <h6>Se acabo el tiempo!</h6>
+                                        </div>
+                                        <div class=""card-action"">
+                                            <p style = ""text-align: justify;"" >
+                                                <span> Síguenos en nuestras redes sociales</span>
+                                                <span>ya que anunciaremos a los ganadores por esos medios.</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `);
+                        }}
+                }});
+            ";
+            ClientScript.RegisterStartupScript(GetType(), "countdown", flipTimerScript ,true);
 
             if (numOfPurchases == 0)
             {
@@ -36,10 +62,6 @@ namespace Sorteos.Web.Cliente
             }
             comprasRegistradas.Visible = true;
             numeroCompras.InnerText = numOfPurchases.ToString();
-
-            
-
-
         }
     }
 }

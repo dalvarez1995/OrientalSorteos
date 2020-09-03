@@ -157,14 +157,14 @@ namespace Sorteos.Services
             }
         }
 
-        public List<ParticipantModel> GetParticipants()
+        public List<ParticipantModel> GetParticipantsByRaffle(int raffleId)
         {
             using (var context = new SorteosDbEntities())
             {
                 return (from c in context.Compra
                         where
-                            c.Estado == (int)PurchaseStatus.Valido
-
+                            c.Estado == (int)PurchaseStatus.Valido &&
+                            c.SorteoId == raffleId
                         group c by c.Usuario into p
                         select new
                         {
