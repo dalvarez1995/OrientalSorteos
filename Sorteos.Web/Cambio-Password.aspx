@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Regreso a Clases Milky - Cambio de Contraseña" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Cambio-Password.aspx.cs" Inherits="Sorteos.Web.Cambio_Password" %>
+﻿<%@ Page Title="Cambio de Contraseña" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Cambio-Password.aspx.cs" Inherits="Sorteos.Web.Cambio_Password" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

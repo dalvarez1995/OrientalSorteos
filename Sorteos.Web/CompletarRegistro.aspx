@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Regreso a Clases Milky - Completar Registro" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="CompletarRegistro.aspx.cs" Inherits="Sorteos.Web.CompletarRegistro" Async="true" %>
+﻿<%@ Page Title="Completar Registro" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="CompletarRegistro.aspx.cs" Inherits="Sorteos.Web.CompletarRegistro" Async="true" %>
 <asp:Content ID="completarRegistroHead" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="completarLogo" ContentPlaceHolderID="logo" runat="server">

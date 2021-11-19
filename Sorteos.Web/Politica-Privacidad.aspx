@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Politica de Privacidad - Regreso a Clases Milky" MetaKeywords="privacidad,datos,uso,politicas" MetaDescription ="El objetivo de esta Política de Privacidad es informarte sobre qué datos recogemos, por qué los recogemos" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Politica-Privacidad.aspx.cs" Inherits="Sorteos.Web.Politica_Privacidad" %>
+﻿<%@ Page Title="Politica de Privacidad" MetaKeywords="privacidad,datos,uso,politicas" MetaDescription ="El objetivo de esta Política de Privacidad es informarte sobre qué datos recogemos, por qué los recogemos" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="Politica-Privacidad.aspx.cs" Inherits="Sorteos.Web.Politica_Privacidad" %>
 
 <asp:Content ID="popHead" ContentPlaceHolderID="head" runat="server">
      <meta name="robots" content="index"/>

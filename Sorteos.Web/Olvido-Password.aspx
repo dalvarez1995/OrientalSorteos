@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Regreso a Clases Milky - Olvido Password" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" Async="true" CodeBehind="Olvido-Password.aspx.cs" Inherits="Sorteos.Web.Olvido_Password" %>
+﻿<%@ Page Title="Olvido Password" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" Async="true" CodeBehind="Olvido-Password.aspx.cs" Inherits="Sorteos.Web.Olvido_Password" %>
 <asp:Content ID="olvidoPasswordHead" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="olvidoPasswordMain" ContentPlaceHolderID="main" runat="server">

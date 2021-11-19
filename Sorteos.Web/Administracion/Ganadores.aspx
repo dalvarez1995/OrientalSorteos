@@ -307,6 +307,7 @@
                 };
 
                 generarDT(tableID, dtImplName, {
+                    raffleId: $('#cboSorteos').val()
                 }, '/Service.asmx/GetDT', tableOpts);
 
             } catch (e) {
@@ -341,6 +342,7 @@
                 };
 
                 generarDT(tableID, dtImplName, {
+                    raffleId: $('#cboSorteos').val()
                 }, '/Service.asmx/GetDT', tableOpts);
 
             } catch (e) {

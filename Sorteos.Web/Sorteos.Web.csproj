@@ -144,6 +144,13 @@
     <Content Include="Content\css\error.css" />
     <Content Include="Content\css\error404.css" />
     <Content Include="Content\css\login.css" />
+    <Content Include="Content\images\actitudpoweron\Fondo - 3840 x 2160 px.jpg" />
+    <Content Include="Content\images\actitudpoweron\background.png" />
+    <Content Include="Content\images\actitudpoweron\Fondo 500 x 400 px.jpg" />
+    <Content Include="Content\images\actitudpoweron\Fondo 500 x 400 px.png" />
+    <Content Include="Content\images\actitudpoweron\Logo - Actitud PowerOn.ico" />
+    <Content Include="Content\images\actitudpoweron\logo.png" />
+    <Content Include="Content\images\actitudpoweron\Logo-Actitud-PowerOn.ico" />
     <Content Include="Content\images\alert.svg" />
     <Content Include="Content\images\all-done.svg" />
     <Content Include="Content\images\background.svg" />
@@ -167,10 +174,11 @@
     <Content Include="Content\images\vote.svg" />
     <Content Include="Content\images\waiting.svg" />
     <Content Include="Content\images\winner_.svg" />
+    <Content Include="Content\images\lamanalogo.png" />
     <Content Include="Content\lib\fliptimer\css\fliptimer.css" />
     <Content Include="Content\lib\fliptimer\js\fliptimer.js" />
-    <Content Include="Scripts\jquery\jquery.fireworks.js" />
     <Content Include="favicon.ico" />
+    <Content Include="Scripts\jquery\jquery.fireworks.js" />
     <Content Include="Content\images\oriental-logo-2.png" />
     <Content Include="Content\images\oriental-logo.png" />
     <Content Include="Content\images\paint-splash-2.svg" />

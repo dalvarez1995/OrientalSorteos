@@ -22,7 +22,7 @@ namespace Sorteos.Services.Datatables
         {
             var predicate = PredicateBuilder.New<Ganador>(true);
             var sorteoId = 0;
-            Int32.TryParse(request.custom.Where(p => p.key == "sorteoId").Select(p => p.value).FirstOrDefault(), out sorteoId);
+            Int32.TryParse(request.custom.Where(p => p.key == "raffleId").Select(p => p.value).FirstOrDefault(), out sorteoId);
 
             if (sorteoId > 0)
                 predicate.And(g => g.SorteoId == sorteoId);

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Regreso a Clases Milky - Activar Cuenta" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="ActivarCuenta.aspx.cs" Inherits="Sorteos.Web.ActivarCuenta" Async="true" %>
+﻿<%@ Page Title="Activar Cuenta" Language="C#" MasterPageFile="~/Auth.Master" AutoEventWireup="true" CodeBehind="ActivarCuenta.aspx.cs" Inherits="Sorteos.Web.ActivarCuenta" Async="true" %>
 
 <asp:Content ID="activarCuentaHeader" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

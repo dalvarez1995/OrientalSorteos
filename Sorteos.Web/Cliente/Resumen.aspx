@@ -72,9 +72,9 @@
         </div>
         <div class="row">
             <div class="col s12">
-                <a href="https://www.facebook.com/AguaLMana/" target="_blank" class="btn facebook-button waves-effect waves-light">
+                <a href="https://www.facebook.com/aguamana.ec/" target="_blank" class="btn facebook-button waves-effect waves-light">
                     <i class="fab fa-facebook-square left"></i>
-                    AGUA L'MANÁ
+                    AGUA MANÁ
                 </a>
             </div>
         </div>
@@ -83,6 +83,14 @@
                 <a href="https://www.facebook.com/teverde.ec/" target="_blank" class="btn facebook-button waves-effect waves-light">
                     <i class="fab fa-facebook-square left"></i>
                     TÉ VERDE
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <a href="https://www.facebook.com/applefit.ec/" target="_blank" class="btn facebook-button waves-effect waves-light">
+                    <i class="fab fa-facebook-square left"></i>
+                    APPLEFIT
                 </a>
             </div>
         </div>
